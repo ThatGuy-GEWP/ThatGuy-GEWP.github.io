@@ -1,0 +1,157 @@
+body {
+    background-color: rgb(8, 8, 12);
+  }
+  
+  @keyframes fadeIn {
+    from {
+        color: transparent;
+    }
+  }
+
+  @keyframes fadeInTwo {
+    from {
+        filter: opacity(0);
+        background-color: transparent;
+        color: transparent;
+    }
+  }
+
+
+  @keyframes scaleUp {
+    from {
+        color: transparent;
+        scale: 100%;
+    }
+    to {
+        scale: 55%;
+    }
+  }
+
+  @keyframes slideOut {
+    from{
+      background-color: transparent;
+      outline-color: transparent;
+      width: 40%;
+    }
+  }
+
+  canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: transparent;
+    
+  }
+
+  h1 {
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    font-size: 45px;
+    color: rgb(252, 255, 241);
+    margin-left: 20px;
+  }
+
+  h2{
+    color: rgb(252, 255, 241);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-align: left;
+    margin-left: 50px;
+  }
+
+  h3{
+    color: rgb(252, 255, 241);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: left;
+    margin-left: 25px;
+  }
+
+  .grid {
+    grid-template-columns: auto auto;
+    grid-auto-rows: 250px;
+    display: grid;
+    gap: 5px 5px;
+  }
+
+  .project{
+    display: block;
+    background-color: rgba(0, 51, 255, 0.13);
+    border-radius: 11px;
+    outline-color: black;
+    outline-style: solid;
+    outline-width: 1px;
+
+    animation-name: fadeInTwo;
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+  }
+
+  .sandgen{
+    display: block;
+    background-image: url('https://repository-images.githubusercontent.com/700679941/82fd11cf-aee7-41c9-9ba2-20ba762c024f');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+    border-radius: 11px;
+
+    outline-color: black;
+    outline-style: solid;
+    outline-width: 1px;
+
+    animation-name: fadeInTwo;
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+  }
+
+  .tarkovGetter{
+    display: block;
+    background-image: url('images/tarkovGetterCover.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+    border-radius: 11px;
+
+    outline-color: black;
+    outline-style: solid;
+    outline-width: 1px;
+
+    animation-name: fadeInTwo;
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+  }
+
+  .block{
+    color: rgb(252, 255, 241);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: left;
+
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+
+    min-height: 200px;
+    max-height: 600px;
+    height: auto;
+
+    background-color: rgba(32, 32, 34, 0.281);
+    outline-color: black;
+    outline-style: dashed;
+    outline-width: 3px;
+  }
+
+  hr {
+    scale: 55%;
+    animation-name: scaleUp;
+    animation-duration: 1.8s;
+  }

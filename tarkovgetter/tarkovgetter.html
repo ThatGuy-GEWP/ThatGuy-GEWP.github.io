@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Quick Price Check</title>
+    <link href="tarkovstyle.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.cdnfonts.com/css/bender" rel="stylesheet">
+    <link rel="icon" href="https://assets.tarkov.dev/5c1d0efb86f7744baf2e7b7b-8x.webp">
+  </head>
+
+  <body id="body">
+
+    <div id="priceText">
+      <h1 style="-webkit-text-stroke: 1px black; display: inline;">Quick Price Check |</h1>
+      <h1 style="-webkit-text-stroke: 0.5px black; display: inline; font-size: 18px;"><a href=/index.html>&nbsp;Back to home</a></h1>
+    </div>
+
+    <span title="Refresh Prices (flea prices only updates every 5 minutes)">
+      <button class="roundedButton" onclick="getItems()">
+        <img src="icon-barter.png" style="
+        display: block;
+        position: relative;
+        top: 28px;
+        opacity: 1;
+        ">
+      </button>
+    </span>
+
+    <span title="Search bar">
+      <input id="SearchBar" type="text" style="
+        position: absolute;
+        left: 50px;
+        top:  85px;
+      ">
+      <div style="
+        color: white;
+        -webkit-text-stroke: 0.5px black;
+        position: absolute;
+        left: 230px;
+        top:  85px;
+        ">Fuzzy search?</div>
+
+      <span title="Fuzzy Search?">
+        <input id="IsFuzzy" type="checkbox" style="
+          position: absolute;
+          left: 208px;
+          top:  85px;
+        ">
+      </span>
+    </span>
+
+
+    <div id="barterItems"></div>
+    <div id="barterItems2"></div>
+
+
+    <script src="tarkovscript.js"></script>
+  </body>
+</html>
