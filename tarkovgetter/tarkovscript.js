@@ -71,13 +71,13 @@ function quickFormat(number) {
 }
 
 function addItemImage(item, targDiv) {
-  let testText = document.createElement("div")
-  let testImg = document.createElement("img")
+  let itemText = document.createElement("div")
+  let itemImg = document.createElement("img")
   let tempDiv = document.createElement("div")
   
-  testImg.src = item.gridImageLink
-  testImg.style.width = gridSize * item.width + "px"
-  testImg.style.height = gridSize * item.height + "px"
+  itemImg.src = item.gridImageLink
+  itemImg.style.width = gridSize * item.width + "px"
+  itemImg.style.height = gridSize * item.height + "px"
 
   tempDiv.style.display = "block"
   tempDiv.style.alignItems = "flex"
@@ -89,9 +89,9 @@ function addItemImage(item, targDiv) {
   tempDiv.style.gridColumn = "span " + item.width
   tempDiv.style.gridRow = "span " + item.height
 
-  testText.id = "priceText"
-  testText.style.width = gridSize
-  testText.style.height = gridSize
+  itemText.id = "priceText"
+  itemText.style.width = gridSize
+  itemText.style.height = gridSize
   let price = item.lastLowPrice
   let lastHighest = -100000
     
@@ -105,11 +105,11 @@ function addItemImage(item, targDiv) {
   }
   
   
-  testText.innerHTML = quickFormat(price)
+  itemText.innerHTML = quickFormat(price)
 
   
-  tempDiv.appendChild(testText)
-  tempDiv.appendChild(testImg)
+  tempDiv.appendChild(itemText)
+  tempDiv.appendChild(itemImg)
   document.getElementById(targDiv).appendChild(tempDiv)
 }
 
@@ -216,6 +216,7 @@ function afterFetch(){
 
 function getItems(){
   if(Date.now() - lastTime > 1000){
+    // attempt to prevent spamming
     console.log(Date.now() - lastTime)
     lastTime = Date.now()
   }else{

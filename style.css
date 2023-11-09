@@ -16,14 +16,38 @@ body {
     }
   }
 
+  @keyframes crossFadeSandget {
+    0% {
+      filter: opacity(1);
+      background-image: url('https://repository-images.githubusercontent.com/700679941/82fd11cf-aee7-41c9-9ba2-20ba762c024f');
+    }
+
+    25% {
+      filter: opacity(0);
+    }
+    51%{
+      background-image: url('https://user-images.githubusercontent.com/24467262/273201276-2dcb91d5-ab1a-47f4-bb8f-6ae28399f20a.gif');
+      filter: opacity(0);
+    }
+    100%{
+      filter: opacity(1);
+    }
+  }
+
+  @keyframes crossFadeTarkov {
+    0% {
+      filter: opacity(0);
+    }
+    100%{
+      filter: opacity(1);
+      background-image: none;
+    }
+  }
 
   @keyframes scaleUp {
     from {
         color: transparent;
         scale: 100%;
-    }
-    to {
-        scale: 55%;
     }
   }
 
@@ -70,15 +94,20 @@ body {
     color: rgb(252, 255, 241);
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    text-align: left;
+    text-align: center;
     margin-left: 25px;
   }
 
+  .gridHolder {
+    position: relative;
+  }
+
   .grid {
-    grid-template-columns: auto auto;
-    grid-auto-rows: 250px;
+    justify-content: center;
     display: grid;
-    gap: 5px 5px;
+    grid-template-columns: repeat(auto-fit, 496px);
+    grid-auto-rows: minmax(150px, 250px);
+    grid-gap: 5px 5px;
   }
 
   .project{
@@ -112,6 +141,43 @@ body {
     animation-timing-function: cubic-bezier(.6,.17,.65,.41);
   }
 
+  .sandgen:hover{
+    animation-name: crossFadeSandget;
+    animation-duration: 0.5s;
+    background-image: url('https://user-images.githubusercontent.com/24467262/273201276-2dcb91d5-ab1a-47f4-bb8f-6ae28399f20a.gif');
+  }
+
+  .tarkovGetter:hover{
+    background-image: none;
+    animation: crossFadeTarkov 0.5s linear;
+  }
+
+  @keyframes tarkovScroll {
+    0% {
+      background-position: 0% 0%;
+    }
+    50%{
+      background-position: 110% 100%;
+    }
+    100%{
+      background-position: 220% 0%;
+    }
+  }
+
+  .tarkovScroller {
+    background-image: none;
+    z-index: -5;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat;
+    background-position: 0% 0%;
+    animation: tarkovScroll 10s linear infinite;
+  }
+
+  .tarkovScroller:hover{
+    background-image: url('images/tarkovGetterBG.png');
+  }
+
   .tarkovGetter{
     display: block;
     background-image: url('images/tarkovGetterCover.png');
@@ -134,14 +200,14 @@ body {
     color: rgb(252, 255, 241);
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    text-align: left;
 
     margin: auto;
-    width: 50%;
+    width: 55%;
     padding: 5px;
 
+    min-width: 495px;
+
     min-height: 200px;
-    max-height: 600px;
     height: auto;
 
     background-color: rgba(32, 32, 34, 0.281);
@@ -151,7 +217,7 @@ body {
   }
 
   hr {
-    scale: 55%;
+    scale: 75%;
     animation-name: scaleUp;
     animation-duration: 1.8s;
   }
