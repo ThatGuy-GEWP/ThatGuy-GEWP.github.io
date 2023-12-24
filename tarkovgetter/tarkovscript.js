@@ -5,12 +5,13 @@ var lastTime = Date.now();
 var lastOffsetx = 0;
 var lastOffsety = 0;
 
+// Items that should not show up, but are still in the barter query category for some reason
 var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag"]
 
 var requiredSize = 0;
 
 // THIS IS A MESS I MADE IN ONE SITTING AT 3AM
-// im not fixing it because JS is a godless language
+// im trying to comment/fix it in prep for an attachments page
 
 function gridResized(){
   let barters = document.getElementById("barterItems")
@@ -58,11 +59,6 @@ function textChanged(e){
   highlight(document.getElementById("SearchBar").value.toLowerCase())
 }
 
-gridResized()
-window.onresize = gridResized
-document.getElementById("SearchBar").addEventListener('input', textChanged)
-document.getElementById("IsFuzzy").addEventListener('change', textChanged)
-
 function quickFormat(number) {
   if (number > 1000000) {
     return ((number * 0.000001).toFixed(1)) + "m"
@@ -92,6 +88,8 @@ function addItemImage(item, targDiv) {
   tempDiv.style.gridColumn = "span " + item.width
   tempDiv.style.gridRow = "span " + item.height
 
+  tempDiv.title = item.name
+
   itemText.id = "priceText"
   itemText.style.width = gridSize
   itemText.style.height = gridSize
@@ -116,7 +114,7 @@ function addItemImage(item, targDiv) {
   document.getElementById(targDiv).appendChild(tempDiv)
 }
 
-function itemFilter(item, colors, width, height, elementsDone) {
+function itemFilter(item, colors, width, height, elementsDone) { // Returns true/false if an item matches a filter.
   if (elementsDone == undefined) {
     elementsDone = []
   }
@@ -136,7 +134,7 @@ function itemFilter(item, colors, width, height, elementsDone) {
   return ((item.height <= height && item.width <= width) && colorCorrect && elementsDone.indexOf(item.name) == -1)
 }
 
-function filterItems(targDiv, data, colors, width, height, itemsDone) {
+function filterItems(targDiv, data, colors, width, height, itemsDone) { // adds items to a div if they match a filter, and are not in the itemsDone array
   for (let i = 0; i < data.data.items.length; i++) { // For the 1x1s that are not special
     let item = data.data.items[i]
 
@@ -149,36 +147,16 @@ function filterItems(targDiv, data, colors, width, height, itemsDone) {
   }
 }
 
-function runInsertBarter(data, targDivA, targDivB) {
+function runInsertFood(data, targDiv) { // Same as runInsertBarter, but for the food items, split off for readability.
   let ItemsDone = []
 
-  filterItems(targDivA, data, ["blue", "grey", "red", "orange"], 1, 1, ItemsDone)
-  filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 1, ItemsDone)
-  filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 2, ItemsDone)
-  filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 3, ItemsDone)
-  filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 2, ItemsDone)
-  filterItems(targDivA, data, ["yellow"], 55, 55, ItemsDone)
-  filterItems(targDivA, data, ["blue", "grey", "orange"], 55, 55, ItemsDone)
+  filterItems(targDiv, data, ["orange"], 1, 1, ItemsDone) // puts stims at the top of the consumables list
 
-  ItemsDone = []
-
-  filterItems(targDivB, data, ["violet"], 1, 1, ItemsDone)
-  filterItems(targDivB, data, ["violet"], 2, 1, ItemsDone)
-  filterItems(targDivB, data, ["violet"], 1, 2, ItemsDone)
-  filterItems(targDivB, data, ["violet"], 2, 2, ItemsDone)
-  filterItems(targDivB, data, ["violet"], 55, 55, ItemsDone)
-
-  afterFetch()
-}
-
-function runInsert(data, targDiv) {
-  let ItemsDone = []
-
-  filterItems(targDiv, data, ["blue", "grey", "default", "orange"], 1, 1, ItemsDone)
-  filterItems(targDiv, data, ["blue", "grey", "default", "orange"], 2, 1, ItemsDone)
-  filterItems(targDiv, data, ["blue", "grey", "default", "orange"], 1, 2, ItemsDone)
-  filterItems(targDiv, data, ["blue", "grey", "default", "orange"], 2, 2, ItemsDone)
-  filterItems(targDiv, data, ["blue", "grey", "default", "orange"], 55, 55, ItemsDone)
+  filterItems(targDiv, data, ["blue", "yellow", "grey", "default"], 1, 1, ItemsDone)
+  filterItems(targDiv, data, ["blue", "yellow", "grey", "default"], 2, 1, ItemsDone)
+  filterItems(targDiv, data, ["blue", "yellow", "grey", "default"], 1, 2, ItemsDone)
+  filterItems(targDiv, data, ["blue", "yellow", "grey", "default"], 2, 2, ItemsDone)
+  filterItems(targDiv, data, ["blue", "yellow", "grey", "default"], 55, 55, ItemsDone)
 
   ItemsDone = []
 
@@ -189,8 +167,30 @@ function runInsert(data, targDiv) {
   filterItems(targDiv, data, ["violet"], 55, 55, ItemsDone)
 }
 
-function afterFetch(){
-  setTimeout(5)
+function runInsertBarter(data, targDivA, targDivB) {
+  let ItemsDoneDivA = [] // Below orders the items into a div, also keeps track of done items to prevent repeats of the same item
+
+  filterItems(targDivA, data, ["blue", "grey", "red", "orange"], 1, 1, ItemsDoneDivA)
+  filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 1, ItemsDoneDivA)
+  filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 2, ItemsDoneDivA)
+  filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 3, ItemsDoneDivA)
+  filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 2, ItemsDoneDivA)
+  filterItems(targDivA, data, ["yellow"], 55, 55, ItemsDoneDivA)
+  filterItems(targDivA, data, ["blue", "grey", "orange"], 55, 55, ItemsDoneDivA)
+
+  ItemsDoneDivA = [] // Same as above but for the right side of the screen.
+  
+  filterItems(targDivB, data, ["violet"], 1, 1, ItemsDoneDivA)
+  filterItems(targDivB, data, ["violet"], 2, 1, ItemsDoneDivA)
+  filterItems(targDivB, data, ["violet"], 1, 2, ItemsDoneDivA)
+  filterItems(targDivB, data, ["violet"], 2, 2, ItemsDoneDivA)
+  filterItems(targDivB, data, ["violet"], 55, 55, ItemsDoneDivA)
+
+  foodAndStimsFetch()
+}
+
+function foodAndStimsFetch(){
+  setTimeout(2.5) // so we dont get ddos prevented from another fetch
   fetch('https://api.tarkov.dev/graphql', {
           method: 'POST',
           headers: {
@@ -216,11 +216,11 @@ function afterFetch(){
           }`})
       })
         .then(r => r.json())
-      .then(data => runInsert(data, "barterItems2"))
+      .then(data => runInsertFood(data, "barterItems2"))
 }
 
-function getItems(){
-  if(Date.now() - lastTime > 1000){
+function barterItemsFetch(){ // Fetch and display barter items.
+  if(Date.now() - lastTime > 5000){
     // attempt to prevent spamming
     console.log(Date.now() - lastTime)
     lastTime = Date.now()
@@ -259,5 +259,15 @@ function getItems(){
     .then(r => r.json())
     .then(data => runInsertBarter(data, "barterItems", "barterItems2"))
 }
+
+// For resizing stuffs
+gridResized()
+window.onresize = gridResized
+
+// Searchbar and fuzzy things
+document.getElementById("SearchBar").addEventListener('input', textChanged)
+document.getElementById("IsFuzzy").addEventListener('change', textChanged)
+
+// Setup the barter items!
 lastTime = 0
-getItems()
+barterItemsFetch()
