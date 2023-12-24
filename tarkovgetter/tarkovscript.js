@@ -9,6 +9,9 @@ var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag"]
 
 var requiredSize = 0;
 
+// THIS IS A MESS I MADE IN ONE SITTING AT 3AM
+// im not fixing it because JS is a godless language
+
 function gridResized(){
   let barters = document.getElementById("barterItems")
   let barters2 = document.getElementById("barterItems2")
@@ -149,10 +152,12 @@ function filterItems(targDiv, data, colors, width, height, itemsDone) {
 function runInsertBarter(data, targDivA, targDivB) {
   let ItemsDone = []
 
-  filterItems(targDivA, data, ["blue", "grey", "orange"], 1, 1, ItemsDone)
+  filterItems(targDivA, data, ["blue", "grey", "red", "orange"], 1, 1, ItemsDone)
   filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 1, ItemsDone)
   filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 2, ItemsDone)
+  filterItems(targDivA, data, ["blue", "grey", "red", "green", "orange"], 1, 3, ItemsDone)
   filterItems(targDivA, data, ["blue", "grey", "orange"], 2, 2, ItemsDone)
+  filterItems(targDivA, data, ["yellow"], 55, 55, ItemsDone)
   filterItems(targDivA, data, ["blue", "grey", "orange"], 55, 55, ItemsDone)
 
   ItemsDone = []
@@ -234,21 +239,22 @@ function getItems(){
     },
     body: JSON.stringify({
       query: `{
-      items(categoryNames:[BarterItem, SpecialItem, Info, Jewelry]) {
-        name
-        shortName
-        width
-        height
-        gridImageLink
-        lastLowPrice
-        avg24hPrice
-        backgroundColor
-        sellFor{
-          price
-          vendor{name:name}
-        }
-      }
-  }`})
+        items(categoryNames:[BarterItem, SpecialItem, Info, Jewelry, Fuel, Electronics]) {
+              name
+              shortName
+              width
+              height
+              gridImageLink
+              lastLowPrice
+              avg24hPrice
+              backgroundColor
+              sellFor{
+                price
+                vendor{name:name}
+              }
+          }
+      }`
+    })
   })
     .then(r => r.json())
     .then(data => runInsertBarter(data, "barterItems", "barterItems2"))

@@ -98,6 +98,15 @@ body {
     margin-left: 25px;
   }
 
+  .gtrack {
+    display: block;
+    position: absolute;
+    background-color: aqua;
+    outline-color: aquamarine;
+    outline-width: 5px;
+    outline-style: solid;
+  }
+
   .gridHolder {
     position: relative;
   }
