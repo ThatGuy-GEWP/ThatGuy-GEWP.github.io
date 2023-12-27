@@ -153,7 +153,7 @@ body {
   .sandgen:hover{
     animation-name: crossFadeSandget;
     animation-duration: 0.5s;
-    background-image: url('https://user-images.githubusercontent.com/24467262/273201276-2dcb91d5-ab1a-47f4-bb8f-6ae28399f20a.gif');
+    background-image: url('images/sandgenPreview.gif');
   }
 
   .tarkovGetter:hover{
@@ -184,12 +184,12 @@ body {
   }
 
   .tarkovScroller:hover{
-    background-image: url('images/tarkovGetterBG.png');
+    background-image: url('images/tarkovGetterBG.jpg');
   }
 
   .tarkovGetter{
     display: block;
-    background-image: url('images/tarkovGetterCover.png');
+    background-image: url('images/tarkovGetterCover.jpg');
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100% 100%;
