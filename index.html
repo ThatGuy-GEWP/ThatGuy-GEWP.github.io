@@ -1,39 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="style.css">
-    <title>Tim's stuff</title>
-  </head>
-  <body>
-    <canvas id="can" ></canvas>
-    <main>
-        <h1>Tim's Stuff</h1> 
-        
-        <hr>
-        
-        <div class="block" style="text-align: center;">
-          <h3>My Personal Projects</h3>
-          
-            <div class="grid">
-              <a class="sandgen" href="https://github.com/ThatGuy-GEWP/SandGen3/#what-is-this"></a>
-              <a class="tarkovGetter" href="tarkovgetter/tarkovgetter.html">
-                <div class="tarkovScroller"></div>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
 
-              </a>
-              <a class="project"></a>
-              <a class="project"></a>
-            </div>
-          
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="anims.css">
+  <link rel="stylesheet" href="skills.css">
+  <title>Tim's stuff</title>
+</head>
+
+<body>
+  <canvas id="can"></canvas>
+  <main>
+    <h1>Tim's Stuff</h1>
+
+    <hr class="hrA">
+    <div id="selectionButtons" class="navHold">
+      <button class="navBut" onclick="showProjects()">Projects</button>
+      <button class="navBut" onclick="showSkills()">Skills</button>
+    </div>
+    <hr class="hrB">
+
+    <div class="skillsBox" id="skills">
+      <div id = "programSkills">
+        <h1 class="h1 fastFade">Various languages i work with</h1>
+        <p>Hi! i make various things, and work very well with most OOP languages, i also go back and forth from low
+          level to high level shennanigans, <br>im mostly self taught from many personal projects</p>
+        <br>
+        <p>I make <em>alot</em> of stuff, not alot of that stuff makes it off my computer sadly,<br> and alot of it ends
+          up finished or abandonded on my hard drive</p>
+        <p>if i had to take a guess at my current experiences with languages it would be about this:</p>
+
+        <h4>HTML and CSS</h4>
+        <div class="skillBar">
+          <div class="skill htmlcss">20%</div>
         </div>
-    </main>
-	<script src="script.js"></script>
-  </body>
+        <p>not used to all the tricks and shortcuts yet.</p>
+
+        <h4>Rust</h4>
+        <div class="skillBar">
+          <div class="skill rust">38%</div>
+        </div>
+        <p>+10% if its with Bevy</p>
+
+        <h4>C#</h4>
+        <div class="skillBar">
+          <div class="skill csharp">88%</div>
+        </div>
+        <p>been my main for the past 3 years or so.</p>
+
+        <h4>Java</h4>
+        <div class="skillBar">
+          <div class="skill java">75%</div>
+        </div>
+        <p>what i used <i>before</i> C#, very bloated mess that i despise but can use well.</p>
+
+        <h4>C++</h4>
+        <div class="skillBar">
+          <div class="skill cpp">60%</div>
+        </div>
+        <p>what i used for a year before switching to C# and after Java<br>
+          <em>really</em> dont like how overcomplicated it is to just split code into files, headers give me headaches
+        </p>
+
+        <h4>GLSL Shaders and other flavors</h4>
+        <div class="skillBar">
+          <div class="skill glsl">57%</div>
+        </div>
+        <p>Vertex shaders, Fragment shaders, Geometry shaders, This even includes Godot's shader language!<br>shader
+          programming is a great time for me personally.</p>
+
+        <h3>Honorable Mentions</h3>
+        <hr class="hrB">
+        <h4 class="light">Python</h4>
+        <p><br>im not <em>really</em> into it these days, but it was my first language. and given enough time i could do
+          just about anything in it</p>
+        <h4 class="light">Lua & LuaU</h4>
+        <p>
+          I learned alot of lua from various sources, Love2D, ComputerCraft, Roblox, and <b>many</b> games that use it
+          as a modding language.<br>
+          <br>LuaU is just a sandboxed version of lua but allows you to define and use types, lua by itself just guesses
+          much like python.<br><br>
+          There is also LuaJIT but thats just lua with a faster compiler.
+        </p>
+        <br>
+      </div>
+
+      <div id = "softwareSkills">
+        <h1 class="h1 fastFade">Other Software</h1>
+        <hr class="hrA">
+        <h4>Blender</h4>
+        <div class="skillBar">
+          <div class="skill blender">92%</div>
+        </div>
+        <p>
+          On steam alone, i have <b><em>over</em></b> 3000 hours on blender.<br> 
+          Im still horrible at <em>making</em> art but if you have a concept or drawing i can translate it over<br>to 3D in an afternoon.
+        </p>
+        <p>
+          Or 2D! mostly with shader magic, i cant really draw at all, im a great programmer not a great artist.<br>
+          However i am <em>very</em> good with shader nodes, its just fun to work with.
+        </p>
+        <img title="A moon render i did in blender with some shader magic!" class="fitImg" src="images/MoonRender4kCompressed.jpg">
+        <sub>Hey look, an actual example!</sub>
+      </div>
+    </div>
+
+    <div class="block" style="text-align: center;" id="projects">
+      <h3>My Personal Projects</h3>
+
+      <div class="grid">
+        <a class="sandgen" href="https://github.com/ThatGuy-GEWP/SandGen3/#what-is-this"></a>
+        <a class="tarkovGetter" href="tarkovgetter/tarkovgetter.html">
+          <div class="tarkovScroller"></div>
+          
+        </a>
+        <a class="project"></a>
+        <a class="project"></a>
+      </div>
+
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
 </html>

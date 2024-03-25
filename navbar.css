@@ -1,0 +1,30 @@
+ .navHold{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    flex-direction: row;
+    max-width: 55%;
+  }
+
+  .navBut{
+    height: 50px;
+    width: 50%;
+    border-radius: 0px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 0px solid rgba(255, 255, 255, 0.24);
+    text-size-adjust: 20px;
+    color: white;
+    background-color: rgba(72, 73, 80, 0.289);
+    font-size: large;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    animation-name: fadeInTwo;
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+  }
+
+  .navBut:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(204, 204, 204, 0.19);
+  }

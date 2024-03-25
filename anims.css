@@ -1,0 +1,63 @@
+ @keyframes fadeIn {
+    from {
+        color: transparent;
+    }
+  }
+
+  @keyframes fadeInTwo {
+    from {
+        filter: opacity(0);
+        background-color: transparent;
+        color: transparent;
+    }
+  }
+
+  @keyframes skillScale {
+    from{
+      width: 0%;
+      background-color: hsl(0, 64%, 41%);
+    }
+  }
+
+  @keyframes crossFadeSandget {
+    0% {
+      filter: opacity(1);
+      background-image: url('https://repository-images.githubusercontent.com/700679941/82fd11cf-aee7-41c9-9ba2-20ba762c024f');
+    }
+
+    25% {
+      filter: opacity(0);
+    }
+    51%{
+      background-image: url('https://user-images.githubusercontent.com/24467262/273201276-2dcb91d5-ab1a-47f4-bb8f-6ae28399f20a.gif');
+      filter: opacity(0);
+    }
+    100%{
+      filter: opacity(1);
+    }
+  }
+
+  @keyframes crossFadeTarkov {
+    0% {
+      filter: opacity(0);
+    }
+    100%{
+      filter: opacity(1);
+      background-image: none;
+    }
+  }
+
+  @keyframes scaleUp {
+    from {
+        color: transparent;
+        scale: 100%;
+    }
+  }
+
+  @keyframes slideOut {
+    from{
+      background-color: transparent;
+      outline-color: transparent;
+      width: 40%;
+    }
+  }

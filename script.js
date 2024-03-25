@@ -1,6 +1,27 @@
 var can = document.getElementById('can')
 var ctx = can.getContext("2d");
 
+
+var proj = document.getElementById('projects')
+var skills = document.getElementById('skills')
+function showProjects(){
+    proj.style.display = "block"
+    skills.style.display = "none"
+}
+
+function showSkills(){
+    proj.style.display = "none"
+    skills.style.display = "block"
+}
+
+
+
+
+
+
+
+
+// start of background stuffs
 var chunks = [];
 var FadeIn = 1.9;
 
