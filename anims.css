@@ -16,6 +16,7 @@
     from{
       width: 0%;
       background-color: hsl(0, 64%, 41%);
+      color: transparent;
     }
   }
 
@@ -47,10 +48,31 @@
     }
   }
 
+  @keyframes fadeInScroll {
+    0%{
+      filter: opacity(0);
+    }
+    100%{
+      filter: opacity(1);
+    }
+  }
+
   @keyframes scaleUp {
     from {
         color: transparent;
         scale: 100%;
+    }
+  }
+
+  @keyframes backgroundScroll {
+    0% {
+      background-position: 0% 0%;
+    }
+    50%{
+      background-position: 100% 100%;
+    }
+    100%{
+      background-position: 200% 0%;
     }
   }
 

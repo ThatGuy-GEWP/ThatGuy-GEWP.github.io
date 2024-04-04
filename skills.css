@@ -2,7 +2,7 @@
     display: none;
     width: 75%;
     height: 80%;
-    background-color: rgba(34, 36, 38, 0.172);
+    background-color: rgba(34, 36, 38, 0.452);
 
     margin: auto;
 
@@ -12,6 +12,10 @@
     min-width: 55%;
 }
 
+html {
+    scroll-behavior : smooth;
+}
+
 p {
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -19,14 +23,6 @@ p {
     margin: 15px;
     font-size: larger;
     animation: fadeInTwo 1.5s;
-}
-
-.skillBar {
-    width: 95%;
-    margin-left: 15px;
-    margin-bottom: 5px;
-    background-color: #dddddd0f;
-    height: 50px;
 }
 
 h4{
@@ -46,6 +42,16 @@ h4{
     font-size: x-large;
 }
 
+.skillBar {
+    width: 95%;
+    margin-left: 2%;
+    margin-bottom: 5px;
+    background-color: #dddddd0f;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.477);
+}
+
 .skill {
     text-align: right;
     height: 100%;
@@ -55,26 +61,79 @@ h4{
     font-weight: 300;
     font-size: large;
 
+    border-radius: 5px;
+    border: 1px none rgb(0, 0, 0);
+
     animation: skillScale 0.85s;
     animation-timing-function: ease-out;
 }
 
 sub{
     font-family: 'Roboto', sans-serif;
-    margin-left: 35px;
+    margin: auto;
+    text-align: left;
+    display: block;
+    width: 96%;
     color: white;
+}
+
+.alignDiv{
+    margin: auto;
+    padding: 20px;
 }
 
 .fitImg{
     max-width: 96%;
+    outline: 2px solid rgba(255, 255, 255, 0.154);
+    margin: auto;
+    display: block;
+}
+
+.smallImg{
+    max-width: 20%;
+}
+
+.leftHr {
+    margin-left: 5px;
+    width: 40%;
+    animation-name: scaleUp;
+    animation-duration: 1.8s;
+  }
+
+
+.videoWithText{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.containtedSub{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    width: 100%;
+    margin-left: 15px;
+}
+
+.videoNoText{
+    width: 100%;
     object-fit: contain;
     outline: 2px solid rgba(255, 255, 255, 0.154);
-    margin-left: 2%;
+    margin-left: 15px;
+}
+
+.videoText{
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 850px) {
     .skillsBox{
         width: 80%;
+    }
+    .videoWithText{
+        flex-direction: column;
     }
 }
 
@@ -84,10 +143,12 @@ sub{
     }
 }
 
-.htmlcss {width: 20%; background-color: hsl(11, 64%, 41%);}
-.rust {width: 40%; background-color: #bc8827;}
+.htmlcss {width: 54%; background-color: #a0be27;}
+.rust {width: 40%; background-color: #be8927;}
 .csharp {width: 83%; background-color: #27952c;}
 .java {width: 75%; background-color: #4a9527;}
-.cpp {width: 60%; background-color: #629527;}
-.glsl {width: 57%; background-color: #629527;}
-.blender {width: 92%; background-color: #629527;}
+.cpp {width: 60%; background-color: #849527;}
+.glsl {width: 57%; background-color: #709527;}
+.blender {width: 92%; background-color: #1cad2d;}
+.godot {width: 48%; background-color: #be9b27;}
+.unity {width: 60%; background-color: #849527;}

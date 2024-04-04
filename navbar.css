@@ -23,6 +23,8 @@
     animation-name: fadeInTwo;
     animation-duration: 0.7s;
     animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+
+    cursor: pointer;
   }
 
   .navBut:hover{

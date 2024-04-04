@@ -3,7 +3,7 @@ body {
   }
 
   canvas {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -11,6 +11,18 @@ body {
     z-index: -1;
     background-color: transparent;
     
+  }
+
+  .icon{
+    display : flex;
+  }
+
+  .icon > img {
+    margin: auto;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: rgba(240, 248, 255, 0.117);
   }
 
   h1 {
@@ -88,26 +100,63 @@ body {
   }
 
   .sandgen{
-    display: block;
-    background-image: url('https://repository-images.githubusercontent.com/700679941/82fd11cf-aee7-41c9-9ba2-20ba762c024f');
+    background-image: url('images/sandgen3Splash.png');
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    
+  }
+
+  .tarkovGetter{
+    background-image: url('images/tarkovGetterCover.jpg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .SFMLGE{
+    width: 100%;
+    height: 100%;
     border-radius: 11px;
+    background-image: url('images/SFMLGESlpashSoonTM.jpg');
+    background-size: 100%;
+  }
 
-    outline-color: black;
-    outline-style: solid;
-    outline-width: 1px;
+  .SFMLGE:hover{
+    animation: crossFadeTarkov 0.5s linear;
+  }
 
-    animation-name: fadeInTwo;
-    animation-duration: 0.7s;
-    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
+  .SFMLGEScroll{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    background-repeat: repeat;
+    background-size: 200%;
+    background-position: 0% 0%;
+    animation: backgroundScroll 20s linear infinite;
+    filter: grayscale(0.85);
+    z-index: 1;
+  }
+
+  .SFMLGEScroll:hover{
+    background-image: url('images/sfml-ge-scroll.png');
+    cursor:not-allowed;
   }
 
   .sandgen:hover{
-    animation-name: crossFadeSandget;
-    animation-duration: 0.5s;
+    animation: crossFadeTarkov 0.5s linear;
+  }
+
+  .sandgenScroll{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    background-size: 100%;
+    z-index: 1;
+  }
+
+  .sandgenScroll:hover{
     background-image: url('images/sandgenPreview.gif');
   }
 
@@ -116,26 +165,15 @@ body {
     animation: crossFadeTarkov 0.5s linear;
   }
 
-  @keyframes tarkovScroll {
-    0% {
-      background-position: 0% 0%;
-    }
-    50%{
-      background-position: 110% 100%;
-    }
-    100%{
-      background-position: 220% 0%;
-    }
-  }
-
   .tarkovScroller {
     background-image: none;
     z-index: -5;
     width: 100%;
     height: 100%;
+    background-size: 200%;
     background-repeat: repeat;
     background-position: 0% 0%;
-    animation: tarkovScroll 10s linear infinite;
+    animation: backgroundScroll 10s linear infinite;
     border-radius: 11px;
     object-fit: cover;
   }
@@ -144,31 +182,13 @@ body {
     background-image: url('images/tarkovGetterBG.jpg');
   }
 
-  .tarkovGetter{
-    display: block;
-    background-image: url('images/tarkovGetterCover.jpg');
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    
-    border-radius: 11px;
-
-    outline-color: black;
-    outline-style: solid;
-    outline-width: 1px;
-
-    animation-name: fadeInTwo;
-    animation-duration: 0.7s;
-    animation-timing-function: cubic-bezier(.6,.17,.65,.41);
-  }
-
   .block{
     color: rgb(252, 255, 241);
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 
     margin: auto;
-    width: 55%;
+    width: 90%;
     padding: 5px;
 
     min-width: 495px;
@@ -193,6 +213,12 @@ body {
     }
     .block{
       min-width: 250px;
+    }
+  }
+
+  @media screen and (min-width: 1650px) {
+    .block{
+      width: 62%;
     }
   }
 

@@ -53,7 +53,7 @@ function getRandPoints(x, y, size, count){
 }
 
 function createPoints(){
-    clearAndResize()
+    justResize()
     cSizeX = (can.width/chunkSize) + 1
     cSizeY = (can.height/chunkSize) + 1
     for(let x = 0; x < cSizeX; x++){
@@ -64,10 +64,22 @@ function createPoints(){
     }
 }
 
+function justResize(){
+    can.width = window.innerWidth;
+    can.height = window.innerHeight;
+}
+
 function clearAndResize() {
+    let oldWidth = can.width + 0;
+    let oldHeight = can.height + 0;
+
     can.width = window.innerWidth;
     can.height = window.innerHeight;
     ctx.clearRect(0, 0, can.width, can.height)
+    if(can.width != oldWidth && can.height != oldHeight){
+        createPoints()
+        console.log("resized!")
+    }
 }
 
 function connectTo(x, y, i, tx, ty, ti){
