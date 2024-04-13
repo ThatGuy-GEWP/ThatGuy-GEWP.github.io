@@ -5,33 +5,60 @@ html {
   }
   
   body {
+    margin: 0;
     background-color: #2f424f;
     background : repeating-conic-gradient(#10181d 0% 25%, #2f424f 0% 50%) 50% / 4px 4px
   }
   
   .roundedButton {
-    position: absolute;
     display: inline-block;
     background-color: transparent;
     border-color: transparent;
-    width: 56px;
-    height: 56px;
+    margin: auto;
+  }
+
+  .headerBackground{
+    background-color: rgba(24, 28, 27, 0.666);
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    overflow: auto;
+  }
+
+  .fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
   }
   
-  
-  #barterItems {
+  .logoImg{
     position: absolute;
+    background-image: url("tarkov-dev-logo.svg");
+    background-repeat: no-repeat;
+    width: 150px;
+    right: 10px;
+    height: 35px;
+  }
+  
+  .barterHolder{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 20px;
+    justify-content: space-evenly;
+  }
+
+  #barterItems {
     left: 15px;
-    top: 100px;
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(56px, 1fr) );
     gap: 0px;
   }
+
   #barterItems2 {
-    position: absolute;
-    top: 100px;
-    left:50%;
-    width: 50%;  
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(56px, 1fr) );
     gap: 0px;

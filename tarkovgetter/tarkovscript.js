@@ -6,7 +6,7 @@ var lastOffsetx = 0;
 var lastOffsety = 0;
 
 // Items that should not show up, but are still in the barter query category for some reason
-var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag"]
+var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag", "Sacred Amulet", "Amulet"]
 
 var requiredSize = 0;
 
@@ -35,12 +35,24 @@ function highlight(searchText){
   }
 
   let fuzzy = document.getElementById("IsFuzzy").checked
+  let fullName = document.getElementById("IsFull").checked
   let result
-  if(fuzzy){
-    result = document.querySelectorAll('[id*="'+searchText+'"]');
-  }else{
-    result = document.querySelectorAll('[id^="'+searchText+'"]');
+  
+  let searchParams = '[id'
+
+  if(fullName){
+    searchParams = '[title'
   }
+
+  if(fuzzy){
+    searchParams = searchParams + '*="'
+  } else {
+    searchParams = searchParams + '^="'
+  }
+  
+  console.log(searchParams)
+
+  result = document.querySelectorAll(searchParams+searchText+'" i]')
   
   //filter: blur(5px);
   for (const child of document.getElementById("barterItems").children) {
@@ -267,6 +279,7 @@ window.onresize = gridResized
 // Searchbar and fuzzy things
 document.getElementById("SearchBar").addEventListener('input', textChanged)
 document.getElementById("IsFuzzy").addEventListener('change', textChanged)
+document.getElementById("IsFull").addEventListener('change', textChanged)
 
 // Setup the barter items!
 lastTime = 0
