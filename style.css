@@ -117,7 +117,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 11px;
-    background-image: url('images/SFMLGESlpashSoonTM.jpg');
+    background-image: url('images/SFMLGESlpash.jpg');
     background-size: 100%;
   }
 
@@ -134,13 +134,12 @@ body {
     background-size: 200%;
     background-position: 0% 0%;
     animation: backgroundScroll 20s linear infinite;
-    filter: grayscale(0.85);
     z-index: 1;
   }
 
   .SFMLGEScroll:hover{
     background-image: url('images/sfml-ge-scroll.png');
-    cursor:not-allowed;
+    cursor:pointer;
   }
 
   .sandgen:hover{
