@@ -136,13 +136,18 @@ function itemFilter(item, colors, width, height, elementsDone) { // Returns true
       colorCorrect = true
       break
     }
-  }
+  }  
+
   for (let i = 0; i<BlackList.length; i++){
     if(item.shortName == BlackList[i]){
       return false
     }
   }
 
+  if(item.lastLowPrice <= 0){ // IDK WHY I DIDNT THINK OF THIS SOONER
+    return false
+  }
+  
   return ((item.height <= height && item.width <= width) && colorCorrect && elementsDone.indexOf(item.name) == -1)
 }
 
