@@ -1,0 +1,78 @@
+
+html{
+    font-family: 'Bender', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background : repeating-conic-gradient(#10181d 0% 25%, #000000 0% 50%) 50% / 8px 8px;
+    margin:0;
+    padding:0;
+}
+
+.itemInfo {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    font-size: large;
+
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+
+    display: block;
+
+
+    top: 0;
+    margin: 0px;
+    padding: 1px;
+
+    background-color:#0a0f12dc;
+}
+
+.itemDesc{
+    font-size: large;
+    
+    text-align: left;
+    width: 25%;
+    
+    margin: auto;
+    padding: 5px;
+}
+
+.flexBase{
+    display: flex;
+    margin: auto;
+    width: 100%;
+
+    flex-direction: column;
+
+    background-color: #0a0f12dc;
+    border-radius: 5px;
+}
+
+
+.itemHolder{
+    display: grid;
+    background-color: #0e0a1267;
+
+    margin: auto;
+    margin-top: 15px;
+
+    width:95%;
+    
+    grid-template-columns: repeat(auto-fit, 64px);
+    grid-auto-flow: dense;
+
+    background-repeat: repeat;
+    background-image: url("empty-slot.png");
+}
+
+.item{
+    background-repeat: repeat;
+    background-image: url("https://assets.tarkov.dev/5c94bbff86f7747ee735c08f-grid-image.webp");
+}
+
+.item:hover{
+    filter: contrast(0.85);
+}
