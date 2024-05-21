@@ -11,7 +11,28 @@ body {
     padding:0;
 }
 
+.banner{
+    height: 40px;
+    background-color: rgba(24, 28, 27, 0.966);
+    padding: 10px;
+}
+
+.clickableA {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.tarkovDevIcon{
+    background-image: url("tarkov-dev-logo.svg");
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 300px;
+}
+
 .itemInfo {
+    z-index: 5;
     width: 100%;
     color: #ffffff;
     text-align: center;
@@ -24,10 +45,11 @@ body {
 
 
     top: 0;
-    margin: 0px;
-    padding: 1px;
+    margin: auto;
+    
+    overflow: hidden;
 
-    background-color:#0a0f12dc;
+    background-color:#0a0f12f4;
 }
 
 .itemDesc{
@@ -37,7 +59,6 @@ body {
     width: 25%;
     
     margin: auto;
-    padding: 5px;
 }
 
 .flexBase{
@@ -49,6 +70,8 @@ body {
 
     background-color: #0a0f12dc;
     border-radius: 5px;
+
+    margin-bottom: 5px;
 }
 
 
@@ -64,13 +87,48 @@ body {
     grid-template-columns: repeat(auto-fit, 64px);
     grid-auto-flow: dense;
 
-    background-repeat: repeat;
-    background-image: url("empty-slot.png");
+    justify-content: center;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+
+    background-color: #0000003e;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .item{
-    background-repeat: repeat;
+    position: relative;
+    background-repeat:no-repeat;
     background-image: url("https://assets.tarkov.dev/5c94bbff86f7747ee735c08f-grid-image.webp");
+    overflow: hidden;
+}
+
+mark{
+    background-color: #00000000;
+    color: #fff799;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.standout{
+    background-color: #00000000;
+    color: #fff5f5;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.itemText{
+    font-size:medium;
+    position: absolute;
+
+    bottom: 0px;
+    left: 3px;
+    
+
+    top: 0px;
+
+    color: #ede6ca;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 1;
 }
 
 .item:hover{

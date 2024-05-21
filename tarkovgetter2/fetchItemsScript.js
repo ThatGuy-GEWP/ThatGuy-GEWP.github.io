@@ -1,5 +1,5 @@
 // Items that should not show up, but are still in the barter query category for some reason
-var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag", "Sacred Amulet", "Amulet"]
+var BlackList = ["BEAR", "USEC", "MB", "GPSA", "DSPT", "Repeater", "Dogtag", "Sacred Amulet", "Amulet", "Primorsky"]
 
 var loaded = false;
 var allBarterItems;
@@ -26,7 +26,8 @@ function itemFilter(item, colors, width, height, elementsDone) {
     }
   }
 
-  if (item.lastLowPrice <= 0) {
+  if (item.fleaMarketFee == null) {
+    console.log("OI PISSOFF")
     // IDK WHY I DIDNT THINK OF THIS SOONER
     return false;
   }
@@ -39,8 +40,10 @@ function itemFilter(item, colors, width, height, elementsDone) {
   );
 }
 
-function filterItems(data, colors, width, height) {
+function filterItems(data, colors, width, height, categoryName, blackList = false) {
   let itemsDone = []
+
+  
 
   // adds items to a div if they match a filter, and are not in the itemsDone array
   for (let i = 0; i < data.data.items.length; i++) {
@@ -48,48 +51,102 @@ function filterItems(data, colors, width, height) {
     let item = data.data.items[i];
 
     if (itemFilter(item, colors, width, height, itemsDone)) {
-      if (itemsDone != undefined) {
-        itemsDone.push(item);
+      if(categoryName != null) {
+        if(blackList == false){
+            if(item.category.name == categoryName){
+                itemsDone.push(item);
+            } 
+        } else {
+            if(item.category.name != categoryName){
+                itemsDone.push(item);
+            } 
+        }
+      } else {
+        if (itemsDone != undefined) {
+            itemsDone.push(item);
+          }
       }
     }
   }
   return itemsDone
 }
 
+function itemsPriceSort(itemA, itemB){
+    if(itemA.lastLowPrice < itemB.lastLowPrice){
+        return 1
+    }
+    if(itemA.lastLowPrice > itemB.lastLowPrice){
+        return -1
+    }
+    return 0
+}
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function quickFormat(number) {
+    if (number > 1000000) {
+      return ((number * 0.000001).toFixed(1)) + "m"
+    }
+    if (number > 1000) {
+      return ((number * 0.001).toFixed(1)) + "k"
+    }
+    return number
+  }
 
-function setItemInfo(selectedItem){
+
+function setItemInfo(selectedItem, itemDiv){
     var shortName = document.getElementById("itemShortName")
     var fullName = document.getElementById("itemFullName")
     var cost = document.getElementById("itemCost")
     var costPerSlot = document.getElementById("itemCostPerSlot")
 
     fullName.innerHTML = selectedItem.name
-    shortName.innerHTML = "Short Name: " + selectedItem.shortName
-    cost.innerHTML = "Last lowest flea price: ₽" + numberWithCommas(selectedItem.lastLowPrice)
+    shortName.innerHTML = 'Short Name: <mark class="standout">' + selectedItem.shortName + "</mark>"
 
-    if(selectedItem.width == 1 && selectedItem.height == 1){
-        costPerSlot.innerHTML = "&nbsp;"
-        return
+    var RealCost = 0
+
+    if(itemDiv.dataset.use24hr == true){
+        RealCost = selectedItem.avg24hPrice
+
+        cost.innerHTML = "Average 24h flea price: ₽<mark>" + numberWithCommas(selectedItem.lastLowPrice) +  "</mark>"
+    } else {
+        RealCost = selectedItem.lastLowPrice
+
+        cost.innerHTML = "Last lowest flea price: ₽<mark>" + numberWithCommas(selectedItem.lastLowPrice) +  "</mark>"
     }
 
-    costPerSlot.innerHTML = "Price Per Slot: ₽" + numberWithCommas(Math.floor(selectedItem.lastLowPrice / (selectedItem.width * selectedItem.height)))
+    costPerSlot.innerHTML = "Price Per Slot: ₽<mark>" + numberWithCommas(Math.floor(RealCost / (selectedItem.width * selectedItem.height))) + "</mark>"
 }
 
-function addItemImage(item, targDiv, order) {
+function addItemImage(item, targDiv, use24hr) {
     let itemDiv = document.createElement("div")
+    let itemCost = document.createElement("div")
+
     itemDiv.className = "item"
     
     itemDiv.style.backgroundImage = "url("+ item.gridImageLink + ")"
     itemDiv.style.width = 64 * item.width + "px"
     itemDiv.style.height = 64 * item.height + "px"
 
-    itemDiv.onclick = function(){
-        setItemInfo(item)
+    itemDiv.style.backgroundSize = itemDiv.style.width + " " + itemDiv.style.height
+
+    itemCost.className = "itemText"
+    itemCost.style.width = 64 * item.width + "px"
+    itemCost.style.height = 64 * item.height + "px"
+
+    if(use24hr == true) {
+        itemCost.innerHTML = quickFormat(item.avg24hPrice)
+    } else {
+        itemCost.innerHTML = quickFormat(item.lastLowPrice)
     }
+
+    itemCost.style.top = ((64 * item.height) - 20) + "px"
+
+    itemDiv.dataset.fullName = item.name
+    itemDiv.dataset.shortName = item.shortName
+    itemDiv.dataset.use24hr = use24hr
 
     itemDiv.style.gridColumn = "span " + item.width
     itemDiv.style.gridRow = "span " + item.height
@@ -97,42 +154,64 @@ function addItemImage(item, targDiv, order) {
     //itemDiv.style.order = order
   
     targDiv.appendChild(itemDiv)
-}
+    itemDiv.appendChild(itemCost)
 
-function addItemsToDiv(data, div){
-    for(let i = 0; i < data.length; i++){
-        let item = data[i]
-        addItemImage(item, div, 0)
+    itemDiv.onclick = function(){
+        setItemInfo(item, itemDiv)
     }
 }
 
-function getSizesInOrder(itemData, filter, div){
-    addItemsToDiv(filterItems(itemData, filter, 1, 1), div)
-    addItemsToDiv(filterItems(itemData, filter, 2, 1), div)
-    addItemsToDiv(filterItems(itemData, filter, 1, 2), div)
-    addItemsToDiv(filterItems(itemData, filter, 2, 2), div)
-    addItemsToDiv(filterItems(itemData, filter, 3, 2), div)
-    addItemsToDiv(filterItems(itemData, filter, 2, 3), div)
-    addItemsToDiv(filterItems(itemData, filter, 3, 3), div)
-    addItemsToDiv(filterItems(itemData, filter, 1, 3), div)
-    addItemsToDiv(filterItems(itemData, filter, 4, 2), div)
-    addItemsToDiv(filterItems(itemData, filter, 2, 4), div)
-    addItemsToDiv(filterItems(itemData, filter, 4, 3), div)
-    addItemsToDiv(filterItems(itemData, filter, 5, 2), div)
-    addItemsToDiv(filterItems(itemData, filter, 2, 5), div)
+function addItemsToDiv(data, div, use24hr){
+    for(let i = 0; i < data.length; i++){
+        let item = data[i]
+        addItemImage(item, div, use24hr)
+    }
+}
+
+function getSizesInOrder(itemData, filter, div, catfilter){
+    addItemsToDiv(filterItems(itemData, filter, 1, 1, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 2, 1, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 1, 2, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 2, 2, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 3, 2, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 2, 3, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 3, 3, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 1, 3, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 4, 2, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 2, 4, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 4, 3, catfilter, true), div)
+    addItemsToDiv(filterItems(itemData, filter, 5, 2, catfilter, true), div)
 }
 
 
-function FinalizeLoad(itemData){
+function FinishLoadingBarterItems(itemData){
     allBarterItems = itemData
 
-    addItemsToDiv(filterItems(itemData, ["orange"], 1, 1), document.getElementById("common"))
+    let firsts = filterItems(itemData, ["orange"], 1, 1)
+    addItemsToDiv(firsts, document.getElementById("common"))
     getSizesInOrder(itemData, ["blue", "yellow", "grey", "default"], document.getElementById("common"))
 
+    addItemsToDiv(filterItems(itemData, ["violet"], 2, 5), document.getElementById("rare"))
     getSizesInOrder(itemData, ["violet"], document.getElementById("rare"))
 }
 
-function FetchCategory(category){ // returns a data[] table with all the items
+function FinishLoadingFoodItems(itemData){
+    addItemsToDiv(filterItems(itemData, ["orange"], 1, 1), document.getElementById("food"))
+
+    getSizesInOrder(itemData, ["blue", "yellow", "grey", "default", "violet"], document.getElementById("food"))
+}
+
+function FinishLoadingMedItems(itemData){
+    addItemsToDiv(filterItems(itemData, ["orange"], 1, 1, "Stimulant").sort(itemsPriceSort), document.getElementById("meds"))
+
+    getSizesInOrder(itemData, ["orange", "blue", "yellow", "grey", "default", "violet"], document.getElementById("meds"), "Stimulant")
+}
+
+function FinishLoadingKeyItems(itemData){
+    addItemsToDiv(filterItems(itemData, ["orange", "blue", "yellow", "grey", "default", "violet"], 1, 1).sort(itemsPriceSort), document.getElementById("keys"), true)
+}
+
+async function FetchCategory(category, func){ // returns a data[] table with all the items
     setTimeout(2.5) // so we dont get ddos prevented from another fetch
 
     let lastBit = `]) {
@@ -141,8 +220,12 @@ function FetchCategory(category){ // returns a data[] table with all the items
         width
         height
         gridImageLink
-        avg24hPrice
         lastLowPrice
+        fleaMarketFee
+        avg24hPrice
+        category {
+          name
+        }
         backgroundColor
         sellFor{
           price
@@ -154,7 +237,7 @@ function FetchCategory(category){ // returns a data[] table with all the items
         items(categoryNames:[`+category+lastBit
 
 
-    fetch('https://api.tarkov.dev/graphql', {
+    await fetch('https://api.tarkov.dev/graphql', {
             method: 'POST',
 
             headers: 
@@ -166,7 +249,11 @@ function FetchCategory(category){ // returns a data[] table with all the items
                 query: outStr
                 }
             )
-        }).then(r => r.json()).then(r => FinalizeLoad(r))
+        }).then(r => r.json()).then(r => func(r))
+    console.log("Finished "+category)
 }
 
-FetchCategory("BarterItem, SpecialItem, Info, Jewelry, Fuel, Electronics")
+FetchCategory("BarterItem, SpecialItem, Info, Jewelry, Fuel, Electronics", FinishLoadingBarterItems)
+FetchCategory("FoodAndDrink", FinishLoadingFoodItems) //Mechanical Key
+FetchCategory("Meds, Stimulant", FinishLoadingMedItems)
+FetchCategory("Keycard, MechanicalKey", FinishLoadingKeyItems)

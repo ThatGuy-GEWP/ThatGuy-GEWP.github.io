@@ -94,6 +94,9 @@ function addItemImage(item, targDiv) {
   tempDiv.style.alignItems = "flex"
   tempDiv.style.width = gridSize * item.width + "px"
   tempDiv.style.height = gridSize * item.height + "px"
+
+  
+
   tempDiv.style.padding = gridSize * 1
   tempDiv.id = item.shortName.toLowerCase()
 
