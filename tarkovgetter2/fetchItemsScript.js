@@ -107,10 +107,13 @@ function setItemInfo(selectedItem, itemDiv){
 
     var RealCost = 0
 
-    if(itemDiv.dataset.use24hr == true){
+    console.log(itemDiv.dataset)
+
+    if(itemDiv.dataset.avg == "true"){
+        console.log("WORK!!!! PLEASE!!!")
         RealCost = selectedItem.avg24hPrice
 
-        cost.innerHTML = "Average 24h flea price: ₽<mark>" + numberWithCommas(selectedItem.lastLowPrice) +  "</mark>"
+        cost.innerHTML = "Average 24h flea price: ₽<mark>" + numberWithCommas(selectedItem.avg24hPrice) +  "</mark>"
     } else {
         RealCost = selectedItem.lastLowPrice
 
@@ -123,6 +126,10 @@ function setItemInfo(selectedItem, itemDiv){
 function addItemImage(item, targDiv, use24hr) {
     let itemDiv = document.createElement("div")
     let itemCost = document.createElement("div")
+
+    if(use24hr == null){
+        use24hr = false
+    }
 
     itemDiv.className = "item"
     
@@ -146,7 +153,7 @@ function addItemImage(item, targDiv, use24hr) {
 
     itemDiv.dataset.fullName = item.name
     itemDiv.dataset.shortName = item.shortName
-    itemDiv.dataset.use24hr = use24hr
+    itemDiv.dataset.avg = use24hr
 
     itemDiv.style.gridColumn = "span " + item.width
     itemDiv.style.gridRow = "span " + item.height
