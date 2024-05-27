@@ -52,13 +52,19 @@ body {
     background-color:#0a0f12f4;
 }
 
+.descHolder{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
 .itemDesc{
     font-size: large;
     
-    text-align: left;
+    text-align: center;
     width: 25%;
     
-    margin: auto;
+    
 }
 
 .flexBase{
@@ -113,6 +119,24 @@ mark{
 .standout{
     background-color: #00000000;
     color: #fff5f5;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.badPrice{
+    background-color: #00000000;
+    color: #ff0000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.okayPrice{
+    background-color: #00000000;
+    color: #ffbf00;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.goodPrice{
+    background-color: #00000000;
+    color: #15ff00;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 

@@ -97,13 +97,37 @@ function quickFormat(number) {
 
 
 function setItemInfo(selectedItem, itemDiv){
-    var shortName = document.getElementById("itemShortName")
+    //var shortName = document.getElementById("itemShortName")
     var fullName = document.getElementById("itemFullName")
     var cost = document.getElementById("itemCost")
     var costPerSlot = document.getElementById("itemCostPerSlot")
 
+
+    var therapistCost = document.getElementById("itemTherapistCost")
+    var peacekeeperCost = document.getElementById("itemPeaceCost")
+    var traderfleaDiff = document.getElementById("fleaCostDiffrence")
+    
+    let therThin = "Therapist Sell Price: ";
+
+    therapistCost.innerHTML = "Cant sell to therapist";
+
+    let sellToTraderPrice = -1
+
+    for(i = 0; i < selectedItem.sellFor.length; i++){
+      let cur = selectedItem.sellFor[i]
+      if(cur.vendor.name == "Therapist"){
+        therapistCost.innerHTML = therThin + '₽<mark>' + numberWithCommas(cur.price) + '</mark>'
+        sellToTraderPrice = cur.price
+        
+      }
+    }
+
+    traderfleaDiff.innerHTML = "Sell to Flea vs Sell to Trader: 0"
+    
+    
+
     fullName.innerHTML = selectedItem.name
-    shortName.innerHTML = 'Short Name: <mark class="standout">' + selectedItem.shortName + "</mark>"
+    //shortName.innerHTML = 'Short Name: <mark class="standout">' + selectedItem.shortName + "</mark>"
 
     var RealCost = 0
 
@@ -118,6 +142,28 @@ function setItemInfo(selectedItem, itemDiv){
         RealCost = selectedItem.lastLowPrice
 
         cost.innerHTML = "Last lowest flea price: ₽<mark>" + numberWithCommas(selectedItem.lastLowPrice) +  "</mark>"
+    }
+
+    let fullDif = sellToTraderPrice - RealCost
+    let markText
+
+    if(fullDif < 0){
+      markText = '<mark class="badPrice">'
+    } 
+    if(fullDif > 0) {
+      markText = '<mark class="goodPrice">'
+    }
+
+    if(Math.abs(fullDif) < 5000){
+      markText = '<mark class="okayPrice">'
+    }
+
+    if(sellToTraderPrice > -1){
+      traderfleaDiff.innerHTML = "Sell to Trader Profit: ₽" + markText + numberWithCommas(sellToTraderPrice - RealCost) + "</mark>"
+    }
+
+    if(therapistCost.innerHTML == "Cant sell to therapist"){
+      traderfleaDiff.innerHTML = ""; 
     }
 
     costPerSlot.innerHTML = "Price Per Slot: ₽<mark>" + numberWithCommas(Math.floor(RealCost / (selectedItem.width * selectedItem.height))) + "</mark>"
@@ -235,8 +281,11 @@ async function FetchCategory(category, func){ // returns a data[] table with all
         }
         backgroundColor
         sellFor{
-          price
-          vendor{name:name}
+          currency,
+          price,
+          vendor{
+            name
+          }
         }
      }
     }`
