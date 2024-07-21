@@ -1,4 +1,4 @@
-var can = document.getElementById('cn')
+var can = document.getElementById('can')
 var ctx = can.getContext("2d");
 
 can.width = window.innerWidth;
@@ -23,8 +23,12 @@ let realCursor_x = -1
 let realCursor_y = -1
 
 document.onmousemove = function(event) {
-  realCursor_x = event.pageX;
-  realCursor_y = event.pageY;
+  // https://www.geeksforgeeks.org/how-to-get-the-coordinates-of-a-mouse-click-on-a-canvas-element/
+  // This language is TERRIBLE AND I HATE IT
+
+  let rect = can.getBoundingClientRect();
+  realCursor_x = event.clientX - rect.left;
+  realCursor_y = event.clientY - rect.top;
 }
 
 function resized() {
@@ -37,10 +41,27 @@ function resized() {
 }
 
 function fadeResize() {
+  if(can.width != window.innerWidth || can.height != window.innerHeight){
+    console.log("Resized!")
+    resized()
+  }
+
   ctx.fillStyle = "rgb(0,0,0,0.25)";
   ctx.fillRect(0, 0, can.width, can.height);
 
   genGrid()
+}
+
+function checkForResize() {
+  let oldWidth = can.width + 0;
+  let oldHeight = can.height + 0;
+
+  can.width = window.innerWidth;
+  can.height = window.innerHeight;
+  if(can.width != oldWidth && can.height != oldHeight){
+      resized()
+      console.log("Resized!")
+  }
 }
 
 

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="anims.css">
   <link rel="stylesheet" href="skills.css">
+  <link rel="stylesheet" href="media.css">
   <link rel="stylesheet" href="imageHolder.css">
 
   <title>Tim's stuff</title>
@@ -32,13 +33,25 @@
     <hr class="hrA">
     <div id="selectionButtons" class="navHold">
       <button class="navBut" onclick="showProjects()">Projects</button>
-      <button class="navBut" onclick="showSkills()">About Me (epic trust)</button>
+      <button class="navBut" onclick="showSkills()">About Me</button>
     </div>
     <hr class="hrB">
 
     <div class="imageModal" id="modal">
       <div class="imageModalHolder">
         <img id="modalImage" class="imageModalImage">
+      </div>
+    </div>
+
+    <div class="cssSucksAss" id="media">
+      <div class="CustomPlayerBase">
+        <audio>
+          <source src="media/audio/Glee.mp3">
+        </audio>
+
+        <div class="CustomPlayerBody">
+          <div class="CustomPlayerPausePlay"></div>
+        </div>
       </div>
     </div>
 
@@ -56,23 +69,6 @@
         <p>There is a couple im most likely forgetting, i can pickup and use just about anything in a couple hours if its interesting enough. (or you know, money)</p>
         <p>if i had to take a guess at my current experience level with the various languages i use/used, it would look like this</p>
 
-        <h4>HTML and CSS</h4>
-        <div class="skillBar">
-          <div class="skill htmlcss">54%</div>
-        </div>
-        <p>
-          not yet used to the language, i can <abbr title="without javascript, Its just defining layouts, does this count as coding or just a really fancy text document?"><q>code</q></abbr> with it just fine, the issue is there is so many diffrent ways to do the exact same thing its confusing.<br>
-          Im rather new to web design in terms of making good looking pages, i think i did an alright job on this one (with lots of help from <a href="https://www.w3schools.com">W3Schools</a>) but it could be better.<br>
-          also im bundling HTML and CSS into one bar as its basically impossible to use one without the other.<br>
-          Javascript is <em>very</em> easy to use and learn so im also not going to be including it on this page.
-        </p>
-
-        <h4>Rust</h4>
-        <div class="skillBar">
-          <div class="skill rust">38%</div>
-        </div>
-        <p>+10% if its with Bevy</p>
-
         <h4>C#</h4>
         <div class="skillBar">
           <div class="skill csharp">88%</div>
@@ -83,7 +79,7 @@
         <div class="skillBar">
           <div class="skill java">75%</div>
         </div>
-        <p>what i used <i>before</i> C#, quickly becomes a very bloated dependent on a version thats 20 years old mess that i despise, but understand and can use well.</p>
+        <p>what i used <i>before</i> C#, quickly becomes a very bloated dependent on versions that are 20 years old mess that i despise, but understand and can use well.</p>
 
         <h4>C++</h4>
         <div class="skillBar">
@@ -98,9 +94,24 @@
           <div class="skill glsl">57%</div>
         </div>
         <p>Vertex shaders, Fragment shaders, Geometry shaders, This even includes Godot's shader language!<br>shader
-          programming is good fun for me personally.</p>
+          programming is good fun for me personally.
+        </p>
 
-        <h3>Honorable Mentions</h3>
+        <h4>HTML and CSS</h4>
+        <div class="skillBar">
+          <div class="skill htmlcss">54%</div>
+        </div>
+        <p>
+          Good enough with it to make sites, as you can see!
+        </p>
+
+        <h4>Rust</h4>
+        <div class="skillBar">
+          <div class="skill rust">38%</div>
+        </div>
+        <p>+10% if its with Bevy</p>
+
+        <h1>Honorable Mentions</h1>
         <hr class="hrB">
         <h4 class="light">Python</h4>
         <hr class="leftHr">
@@ -232,9 +243,41 @@
 
         <br><br>
 
+        <hr class="hrA">
+        <h1>Aseprite</h1>
+        <div class="skillBar">
+          <div class="skill aseprite">70%</div>
+        </div>
         <p>
-          For now, thats just about it. expect more things soon!
+          Like i said before im no artist, but visuals are one of the most important
+          Things in a game <br> (After Gameplay of course), so i know a fair bit of pixel art and am
+          slowly getting my own art style
         </p>
+        <h1>Tiles Tiles! (Unfinished)</h1>
+        <img title="Tiles Tiles!! 16 Colors" class="fitImg" src="images/aseprite/Tiles Tiles (unfinished)!!.png">
+
+        <h1>Awakening (Part 1 of Intro for WIP)</h1>
+        <img title="Kinda childish, but looks nice!" class="fitImg" src="images/aseprite/AwakeningFront.png">
+
+        <br><br>
+        <hr class="hrA">
+        <h1>More Projects i made!</h1>
+        <hr class="hrA">
+
+        <h1>Life 2</h1>
+        <p>
+          A Particle life Simulator/Renderer, using just SFML.Net for the rendering, as i hadn't made SFML-GE yet! <br>
+          (Old Love2D Version Source <a href="https://github.com/ThatGuy-GEWP/Particle-Life-2">here</a>)
+        </p>
+        <br><br>
+        <video title="Why are you checking these :sob:" class="fitImg" autoplay controls muted loop>
+          <source src="media/Life2Compressed.mp4" type="video/mp4">
+        </video>
+
+        <h1>Gun Knight (WIP)</h1>
+        <video title="Why are you checking these :sob:" class="fitImg" autoplay controls muted loop>
+          <source src="media/gamedemo.mp4" type="video/mp4">
+        </video>
 
         <br><br>
       </div>
@@ -246,13 +289,15 @@
         <a class="project SFMLGE" href="https://github.com/ThatGuy-GEWP/SFML-GE">
           <div class="SFMLGEScroll"></div>
         </a>
-        <a class="project tarkovGetter" href="tarkovgetter/tarkovgetter.html">
-          <div class="tarkovScroller"></div>
-        </a>
         <a class="project sandgen" href="https://github.com/ThatGuy-GEWP/SandGen3/#what-is-this">
           <div class="sandgenScroll"></div>
         </a>
-        <a class="project"></a>
+        <a class="project tarkovGetter2" href="tarkovgetter2/tarkovGetterIndx.html">
+          <div class="tarkovScroller2"></div>
+        </a>
+        <a class="project tarkovGetter" href="tarkovgetter/tarkovgetter.html">
+          <div class="tarkovScroller"></div>
+        </a>
       </div>
       <br>
     </div>
@@ -260,6 +305,16 @@
 
   </main>
 </body>
-<script src="script.js"></script>
+
+<script src="important-stuffs.js"></script>
+
+<script src="trisBackground.js"></script>
+
 <script src="imageHolderScript.js"></script>
+<script>
+  var audios = document.getElementsByClassName("audioPlayer")
+  for(const elm of audios){
+    elm.volume = 0.25
+  }
+</script>
 </html>

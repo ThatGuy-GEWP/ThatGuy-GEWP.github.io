@@ -116,6 +116,10 @@ mark{
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.hideText{
+    font-size: 0px;
+}
+
 .standout{
     background-color: #00000000;
     color: #fff5f5;
@@ -155,6 +159,35 @@ mark{
     z-index: 1;
 }
 
+.itemDiffText{
+    font-size:medium;
+    position: absolute;
+
+    bottom: 0px;
+    left: 3px;
+    
+
+    top: 0px;
+
+    color: #ede6ca;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 1;
+}
+
 .item:hover{
     filter: contrast(0.85);
+}
+
+.toggleButton:hover{
+    border-color: #ede6ca;
+    transition-duration: 0.25s;
+}
+
+.toggleButton{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #fff5f528;
+    background-color: #00000000;
+    color: #fff5f5;
+    transition-duration: 0.25s;
 }

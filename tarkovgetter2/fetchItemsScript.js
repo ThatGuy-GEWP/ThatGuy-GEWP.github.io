@@ -86,10 +86,10 @@ function numberWithCommas(x) {
 }
 
 function quickFormat(number) {
-    if (number > 1000000) {
+    if (Math.abs(number) > 1000000) {
       return ((number * 0.000001).toFixed(1)) + "m"
     }
-    if (number > 1000) {
+    if (Math.abs(number) > 1000) {
       return ((number * 0.001).toFixed(1)) + "k"
     }
     return number
@@ -134,9 +134,7 @@ function setItemInfo(selectedItem, itemDiv){
     console.log(itemDiv.dataset)
 
     if(itemDiv.dataset.avg == "true"){
-        console.log("WORK!!!! PLEASE!!!")
         RealCost = selectedItem.avg24hPrice
-
         cost.innerHTML = "Average 24h flea price: ₽<mark>" + numberWithCommas(selectedItem.avg24hPrice) +  "</mark>"
     } else {
         RealCost = selectedItem.lastLowPrice
@@ -150,12 +148,15 @@ function setItemInfo(selectedItem, itemDiv){
     if(fullDif < 0){
       markText = '<mark class="badPrice">'
     } 
-    if(fullDif > 0) {
+    if(fullDif > 2000) {
       markText = '<mark class="goodPrice">'
     }
-
-    if(Math.abs(fullDif) < 5000){
+    if(fullDif < 2000 && fullDif > 0){
       markText = '<mark class="okayPrice">'
+    }
+
+    if(fullDif == 0){
+      markText = ''
     }
 
     if(sellToTraderPrice > -1){
@@ -167,6 +168,22 @@ function setItemInfo(selectedItem, itemDiv){
     }
 
     costPerSlot.innerHTML = "Price Per Slot: ₽<mark>" + numberWithCommas(Math.floor(RealCost / (selectedItem.width * selectedItem.height))) + "</mark>"
+}
+
+let diffState = false;
+
+function toggleItemDiffVisibility(){
+  let items = document.getElementsByName("itemTxt")
+
+  for(const item of items){
+    if(diffState == false){
+      item.style = "";
+    } else {
+      item.style.fontSize = "0px";
+    }
+  }
+
+  diffState = !diffState;
 }
 
 function addItemImage(item, targDiv, use24hr) {
@@ -189,13 +206,61 @@ function addItemImage(item, targDiv, use24hr) {
     itemCost.style.width = 64 * item.width + "px"
     itemCost.style.height = 64 * item.height + "px"
 
+    let hasTherapistCost = false
+
+    let sellToTraderPrice = -1
+
+    for(i = 0; i < item.sellFor.length; i++){
+      let cur = item.sellFor[i]
+      if(cur.vendor.name == "Therapist"){
+        sellToTraderPrice = cur.price
+      }
+    }
+
     if(use24hr == true) {
-        itemCost.innerHTML = quickFormat(item.avg24hPrice)
+        itemCost.innerHTML = quickFormat(item.avg24hPrice) 
     } else {
         itemCost.innerHTML = quickFormat(item.lastLowPrice)
     }
 
-    itemCost.style.top = ((64 * item.height) - 20) + "px"
+    if(sellToTraderPrice != -1){
+      hasTherapistCost = true
+
+      let regPrice = itemCost.innerHTML
+
+      let diff = 0
+      let realPrice = 0
+
+      if(use24hr == true){
+        realPrice = sellToTraderPrice - item.avg24hPrice
+      } else {
+        realPrice = sellToTraderPrice - item.lastLowPrice
+      }
+
+      diff = quickFormat(realPrice)
+
+      let markText = '<mark name="itemTxt>'
+
+      if(realPrice < -5000){
+        markText = '<mark name="itemTxt" class="badPrice" style="font-size:0px;">'
+      } 
+      if(realPrice > 100) {
+        markText = '<mark name="itemTxt" class="goodPrice" style="font-size:0px;">'
+      }
+      if(realPrice > -5000 && realPrice < 100){
+        markText = '<mark name="itemTxt" class="okayPrice" style="font-size:0px;">'
+      }
+
+      let fullMark = markText + diff + "</mark>"
+
+      itemCost.innerHTML = fullMark + "<br>" + regPrice
+    } 
+
+    if(hasTherapistCost){
+      itemCost.style.top = ((64 * item.height) - 40) + "px"
+    } else {
+      itemCost.style.top = ((64 * item.height) - 20) + "px"
+    }
 
     itemDiv.dataset.fullName = item.name
     itemDiv.dataset.shortName = item.shortName
