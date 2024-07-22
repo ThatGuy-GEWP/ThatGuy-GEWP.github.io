@@ -10,12 +10,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="anims.css">
   <link rel="stylesheet" href="skills.css">
   <link rel="stylesheet" href="media.css">
   <link rel="stylesheet" href="imageHolder.css">
+
+  <script>
+    $(document).ready(function(){
+      $("#showProj").click(function(){
+        $("#skills").hide()
+        $("#projects").show()
+      })
+
+      $("#showSkills").click(function(){
+        $("#projects").hide()
+        $("#skills").show()
+      })
+    })
+  </script>
 
   <title>Tim's stuff</title>
 </head>
@@ -32,26 +48,14 @@
 
     <hr class="hrA">
     <div id="selectionButtons" class="navHold">
-      <button class="navBut" onclick="showProjects()">Projects</button>
-      <button class="navBut" onclick="showSkills()">About Me</button>
+      <button id="showProj" class="navBut">Projects</button>
+      <button id="showSkills" class="navBut">About Me</button>
     </div>
     <hr class="hrB">
 
     <div class="imageModal" id="modal">
       <div class="imageModalHolder">
         <img id="modalImage" class="imageModalImage">
-      </div>
-    </div>
-
-    <div class="cssSucksAss" id="media">
-      <div class="CustomPlayerBase">
-        <audio>
-          <source src="media/audio/Glee.mp3">
-        </audio>
-
-        <div class="CustomPlayerBody">
-          <div class="CustomPlayerPausePlay"></div>
-        </div>
       </div>
     </div>
 

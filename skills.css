@@ -6,7 +6,10 @@
 
     margin: auto;
 
-    outline-style: dashed;
+    outline-color: rgb(52, 52, 52);
+    border-radius: 2px;
+    outline-style: solid;
+    outline-width: 1px;
 
     min-height: 50%;
     min-width: 55%;
