@@ -43,7 +43,8 @@
 }
 
 .imageModalImage{
-    width: 95vw;
+    max-width: 95vw;
+    max-height: 95vh;
     box-sizing: border-box;
     margin: 0 auto;
     border: solid rgba(183, 183, 183, 0.36) 5px;
