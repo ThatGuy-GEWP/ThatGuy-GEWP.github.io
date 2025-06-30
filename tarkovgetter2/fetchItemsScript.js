@@ -186,13 +186,77 @@ function toggleItemDiffVisibility(){
   diffState = !diffState;
 }
 
+let fleamode = false;
+function toggleFleaTraderMode()
+{
+  let items = document.querySelectorAll('[id=itemTxtBase]');
+
+  fleamode = !fleamode;
+
+  for(const item of items){
+    if(fleamode == false){
+      item.innerHTML = item.dataset.fullMark + item.dataset.traderPrice;
+    } else {
+      item.innerHTML = item.dataset.fullMark + item.dataset.avg24hPrice;
+    }
+  }
+
+  console.log(items.length)
+}
+
+function setItemBlur(targ, to)
+{
+  if(to == true)
+  {
+    targ.style.filter  = "blur(4px)"
+  }
+  else
+  {
+    targ.style.filter  = "blur(0)"
+  }
+}
+
+function searchChanged(val)
+{
+  let thins = document.getElementsByClassName("item");
+
+  console.log(thins.length);
+
+  for(let i = 0; i < thins.length; i++)
+  {
+    if(val == "" || !val)
+    {
+      let item = thins[i];
+      setItemBlur(item, false);
+    }
+    else
+    {
+      let item = thins[i];
+      if(item.dataset.shortName.toLowerCase().includes(val.toLowerCase()))
+      {
+        setItemBlur(item, false);
+      }
+      else
+      {
+        setItemBlur(item, true);
+      }
+      console.log(item.style.filter);
+    }
+  };
+
+  console.log(val);
+}
+
 function addItemImage(item, targDiv, use24hr) {
     let itemDiv = document.createElement("div")
     let itemCost = document.createElement("div")
+    itemCost.id = "itemTxtBase";
 
     if(use24hr == null){
         use24hr = false
     }
+
+    
 
     itemDiv.className = "item"
     
@@ -222,6 +286,9 @@ function addItemImage(item, targDiv, use24hr) {
     } else {
         itemCost.innerHTML = quickFormat(item.lastLowPrice)
     }
+
+    itemCost.dataset.avg24hPrice = quickFormat(item.avg24hPrice);
+    
 
     // EVENT PRICE FIX
     if(sellToTraderPrice != -1)
@@ -259,8 +326,20 @@ function addItemImage(item, targDiv, use24hr) {
 
       let fullMark = markText + diff + "</mark>"
 
+      itemCost.dataset.fullMark = fullMark + "<br>"
+      
+      if(!regPrice)
+      {
+        itemCost.dataset.traderPrice = " "
+      }
+      else
+      {
+        itemCost.dataset.traderPrice = regPrice
+      }
+
       itemCost.innerHTML = fullMark + "<br>" + regPrice
     } 
+    
 
     if(hasTherapistCost){
       itemCost.style.top = ((64 * item.height) - 40) + "px"
@@ -313,7 +392,7 @@ function FinishLoadingBarterItems(itemData){
 
     let firsts = filterItems(itemData, ["orange"], 1, 1)
     addItemsToDiv(firsts, document.getElementById("common"))
-    getSizesInOrder(itemData, ["blue", "yellow", "grey", "default"], document.getElementById("common"))
+    getSizesInOrder(itemData, ["blue", "yellow", "grey", "default", "green"], document.getElementById("common"))
 
     addItemsToDiv(filterItems(itemData, ["violet"], 2, 5), document.getElementById("rare"))
     getSizesInOrder(itemData, ["violet"], document.getElementById("rare"))
@@ -332,7 +411,9 @@ function FinishLoadingMedItems(itemData){
 }
 
 function FinishLoadingKeyItems(itemData){
-    addItemsToDiv(filterItems(itemData, ["orange", "blue", "yellow", "grey", "default", "violet"], 1, 1).sort(itemsPriceSort), document.getElementById("keys"), true)
+    addItemsToDiv(filterItems(itemData, ["blue", "grey", "default"], 1, 1).sort(itemsPriceSort), document.getElementById("keys"), true)
+    addItemsToDiv(filterItems(itemData, ["violet"], 1, 1).sort(itemsPriceSort), document.getElementById("keys_rare"), true)
+    addItemsToDiv(filterItems(itemData, ["orange", "yellow"], 1, 1).sort(itemsPriceSort), document.getElementById("keys_rare++"), true)
 }
 
 async function FetchCategory(category, func){ // returns a data[] table with all the items
