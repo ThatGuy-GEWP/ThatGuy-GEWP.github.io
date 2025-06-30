@@ -223,6 +223,12 @@ function addItemImage(item, targDiv, use24hr) {
         itemCost.innerHTML = quickFormat(item.lastLowPrice)
     }
 
+    // EVENT PRICE FIX
+    if(sellToTraderPrice != -1)
+    {
+        itemCost.innerHTML = quickFormat(sellToTraderPrice)
+    } else {itemCost.innerHTML = ""}
+
     if(sellToTraderPrice != -1){
       hasTherapistCost = true
 
@@ -374,7 +380,7 @@ async function FetchCategory(category, func){ // returns a data[] table with all
     console.log("Finished "+category)
 }
 
-FetchCategory("BarterItem, SpecialItem, Info, Jewelry, Fuel, Electronics", FinishLoadingBarterItems)
+FetchCategory("BarterItem, SpecialItem, Info, Jewelry, Fuel, Electronics, CommonContainer", FinishLoadingBarterItems)
 FetchCategory("FoodAndDrink", FinishLoadingFoodItems) //Mechanical Key
 FetchCategory("Meds, Stimulant", FinishLoadingMedItems)
 FetchCategory("Keycard, MechanicalKey", FinishLoadingKeyItems)
