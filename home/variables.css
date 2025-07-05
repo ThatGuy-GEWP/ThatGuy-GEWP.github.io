@@ -1,0 +1,7 @@
+:root
+{
+    --panel_background_color: rgba(32, 32, 34, 0.281);
+    --panel_outline_color: rgb(52, 52, 52);
+    --font_color: rgb(252, 255, 241);
+    --panel_highlight_color: rgb(57, 57, 77);
+};

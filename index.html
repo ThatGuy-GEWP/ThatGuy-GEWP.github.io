@@ -11,44 +11,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
 
     <!--CSS Files-->
+    <link rel="stylesheet" href="home/variables.css" />
     <link rel="stylesheet" href="home/animations.css" />
     <link rel="stylesheet" href="home/base_styles.css" />
     <link rel="stylesheet" href="home/dynamics.css" />
     <link rel="stylesheet" href="home/Projects/projects.css" />
+    <link rel="stylesheet" href="home/buttons.css" />
   </head>
   <body>
     <br /><br />
     <div class="Title">Tim's Stuff</div>
     <br /><br />
+    
+    <!--
+    <div class="button_holder">
+      <div onclick="window.location.href='blog/pages/AboutMe.html'">About me</div>
+      <div onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">About me Again!</div>
+    </div>
+    -->
 
     <div class="block" style="text-align: center" id="projects">
-      <h2>My Public Projects</h2>
+      <br>
+      <div class="Title">My Public Projects</div>
+      <br>
       <div class="projects_container">
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">
             <img src="images/SFMLGESlpash.jpg" />
-            <div style="background-image: url(images/sfml-ge-scroll.png)"></div>
+            <div class="scroll_bg" style="background-image: url(images/sfml-ge-scroll.png)"></div>
           </div>
         </div>
 
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">
             <img src="images/sandgen3Splash.png" />
-            <div id="staticbg" style="background-image: url(images/sandgenPreview.gif)"></div>
+            <div class="static_bg" style="background-image: url(images/sandgenPreview.gif)"></div>
           </div>
         </div>
 
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='tarkovgetter/tarkovgetter.html'">
             <img src="images/tarkovGetterCover.jpg" />
-            <div style="background-image: url(images/tarkovGetterBG.jpg)"></div>
+            <div class="scroll_bg" style="background-image: url(images/tarkovGetterBG.jpg)"></div>
           </div>
         </div>
 
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='tarkovgetter2/tarkovGetterIndx.html'">
             <img src="tarkovgetter2/splash.png" />
-            <div style="background-image: url(tarkovgetter2/bg.png)"></div>
+            <div class="scroll_bg" style="background-image: url(tarkovgetter2/bg.png)"></div>
+          </div>
+        </div>
+        
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/Neural-Network-From-Scratch'">
+            <img src="images/nnfscover.png" />
+            <div class="static_bg" style="background-image: url(images/nnfsBG.gif)"></div>
+          </div>
+        </div>
+        
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/Particle-Life-2'">
+            <img src="images/ParticleLife2Cover.png" />
+            <div class="static_bg" style="background-image: url(images/particleLife2BG.gif)"></div>
           </div>
         </div>
         <!--
