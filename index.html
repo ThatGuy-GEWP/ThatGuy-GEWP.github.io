@@ -1,333 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <!--Base-->
+    <meta charset="UTF-8" />
+    <title>Title</title>
 
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--CSS Files-->
+    <link rel="stylesheet" href="home/animations.css" />
+    <link rel="stylesheet" href="home/base_styles.css" />
+    <link rel="stylesheet" href="home/dynamics.css" />
+    <link rel="stylesheet" href="home/Projects/projects.css" />
+  </head>
+  <body>
+    <br /><br />
+    <div class="Title">Tim's Stuff</div>
+    <br /><br />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="anims.css">
-  <link rel="stylesheet" href="skills.css">
-  <link rel="stylesheet" href="media.css">
-  <link rel="stylesheet" href="imageHolder.css">
-
-  <script>
-    // https://stackoverflow.com/questions/476679/preloading-images-with-jquery
-    $.fn.preload = function() {
-      this.each(function(){
-          $('<img/>')[0].src = this;
-      });
-    }
-
-    $(['images/tarkovGetterBG.jpg', 'images/sfml-ge-scroll.png', 'tarkovgetter2/bg.png']).preload();
-
-    $(document).ready(function(){
-      $("#showProj").click(function(){
-        $("#skills").hide()
-        $("#projects").show()
-      })
-
-      $("#showSkills").click(function(){
-        $("#projects").hide()
-        $("#skills").show()
-      })
-    })
-  </script>
-
-  <title>Tim's stuff</title>
-</head>
-
-<body>
-  <canvas id="can"></canvas>
-  <main>
-
-    <div class="icon">
-      <img src="images/icon.png">
-    </div>
-
-    <h1>Tim's Stuff</h1>
-
-    <hr class="hrA">
-    <div id="selectionButtons" class="navHold">
-      <button id="showProj" class="navBut">Projects</button>
-      <button id="showSkills" class="navBut">About Me</button>
-    </div>
-    <hr class="hrB">
-
-    <div class="imageModal" id="modal">
-      <div class="imageModalHolder">
-        <img id="modalImage" class="imageModalImage">
-      </div>
-    </div>
-
-    <div class="skillsBox" id="skills">
-      <div id = "programSkills">
-        <h1 class="h1 fastFade">Info about me</h1>
-        <p>Hello! Im Tim, also known as ThatGuyGEWP (GEWP said like GOOP), im a 19 year old programmer who's been coding on and off since i got my first computer at 11.
-          <br>im mostly self taught from <b>many</b> personal projects over the years, most schools i went to when i was younger had really bad or no programming classes,</p><br>
-          <p>but almost all of them had computers and an internet connection, things got a bit difficult when chromebooks came around but i was still able to code through various sites.</p>
-        <br>
-        <p>I make <em>alot</em> of stuff, not a lot of that stuff makes it to the internet sadly,<br> and a lot of it ends
-          up finished and/or abandoned on my hard drive, its a bad habit im trying to break!</p>
-
-        <h1 class="h1 fastFade">Programming languages i use</h1>
-        <p>There is a couple im most likely forgetting, i can pickup and use just about anything in a couple hours if its interesting enough. (or you know, money)</p>
-        <p>if i had to take a guess at my current experience level with the various languages i use/used, it would look like this</p>
-
-        <h4>C#</h4>
-        <div class="skillBar">
-          <div class="skill csharp">88%</div>
-        </div>
-        <p>My main goto language for the past 3 years or so.</p>
-
-        <h4>Java</h4>
-        <div class="skillBar">
-          <div class="skill java">75%</div>
-        </div>
-        <p>what i used <i>before</i> C#, quickly becomes a very bloated dependent on versions that are 20 years old mess that i despise, but understand and can use well.</p>
-
-        <h4>C++</h4>
-        <div class="skillBar">
-          <div class="skill cpp">60%</div>
-        </div>
-        <p>what i used for a year after Java and before switching to C#<br>
-          <em>really</em> dont like how overcomplicated it is to just split code into files, headers give me headaches
-        </p>
-
-        <h4>GLSL Shaders and other flavors</h4>
-        <div class="skillBar">
-          <div class="skill glsl">57%</div>
-        </div>
-        <p>Vertex shaders, Fragment shaders, Geometry shaders, This even includes Godot's shader language!<br>shader
-          programming is good fun for me personally.
-        </p>
-
-        <h4>HTML and CSS</h4>
-        <div class="skillBar">
-          <div class="skill htmlcss">54%</div>
-        </div>
-        <p>
-          Good enough with it to make sites, as you can see!
-        </p>
-
-        <h4>Rust</h4>
-        <div class="skillBar">
-          <div class="skill rust">38%</div>
-        </div>
-        <p>+10% if its with Bevy</p>
-
-        <h1>Honorable Mentions</h1>
-        <hr class="hrB">
-        <h4 class="light">Python</h4>
-        <hr class="leftHr">
-        <p><br>im not <em>really</em> into python these days, but it was my first language and i used it alot mostly on <a href="https://repl.it">repl.it</a> when they were a much smaller company, 
-          <abbr title="this site mostly exists since the stopping of free hosting took down Tarkov Getter, and i needed a place to be able to use it!">and hosting was free</abbr></p>
-        <br>
-        <h4 class="light">Lua & LuaU</h4>
-        <hr class="leftHr">
-        <p>
-          I learned alot of lua from various sources, Love2D, ComputerCraft, Roblox, and <b>many</b> games that use it
-          as a modding language.<br>
-          <br>LuaU is just a sandboxed version of lua but allows you to define and use types, lua by itself just guesses
-          types much like python.<br><br>
-          I have yet to see any big company that uses lua regularly, but if there ever is one i know lua inside and out, and have read through the entire documentation. 
-          <br>(not LuaU, though there is only a few changes to the language itself)
-        </p>
-        <br>
-        <h4 class="light">Circuit and logic design</h4>
-        <hr class="leftHr">
-        <p>
-          When i was a kid i always wanted to make a computer, i got inspired alot from those <br>
-          minecraft videos where a guy just builds a 4 bit CPU with redstone, but i was still just a kid, never stopped me from trying though!<br><br>
-          This eventually lead to far later in 2019-2022, and turned into me messing with various logic sims including a <em>very good</em> one called Logic World thats where
-          i got most my logic design experience, especially in its alpha version "The Ultimate Nerd Game"<br><br> I then moved onto things like logisim. also got a mini tutor from an actual processor engineer in the logic world discord!<br>
-          he gave me a big push in the right direction, and it eventually lead to me making my first CPU's in both Logic World and Logisim.
-          <br><br>
-          turns out most the complexity comes from the code, designing a simple 8-Bit or 16-Bit CPU is good fun! and in the process of learning about it, you pick up
-          some things that carry over into regular programming. 
-          <br>fully understanding the use of various bitwise operators was a nice plus<br><br>
-          <p>Below is some more recent chips i made, they aren't competing with intel any time soon but they work!</p>
-          <div class="imageHolder">
-            <img class="imageHolderImg" onclick="onClickFunc(this)" title="A VERY reduced instruction set 8 bit CPU" src="images/logisim 8bit.png">
-            <img class="imageHolderImg" onclick="onClickFunc(this)" title="Said CPU running the fibinachi sequence" src="images/logisim8bitFib.png">
-          </div>
-        </p>
-        <br>
-      </div>
-
-      <div id = "softwareSkills">
-        <h1 class="h1 fastFade">Other Software Skills</h1>
-        <hr class="hrA">
-        <h4>Blender</h4>
-        <div class="skillBar">
-          <div class="skill blender">92%</div>
-        </div>
-        <p>
-          On steam alone i have <b><em>over</em></b> 870+ hours on blender, and have been using it on and off since i was 12<br> 
-          Im still horrible at <em>making</em> art but if you have a concept or drawing i can translate it over to 3D in an afternoon.
-        </p>
-        <p>
-          Or 2D! mostly with shader magic, i cant really draw at all, im a great programmer not a great artist.<br>
-          However i am <em>fairly</em> good with shader nodes, they are just fun to work with.
-        </p>
-        <h1>Mostly Shader based moon, 2023</h1>
-        <img title="A moon render i did in blender with some shader magic!" class="fitImg" src="images/MoonRender4kCompressed.jpg">
-        <sub>Started this one in 2022 near december but forgot about it over the holidays, finished it some time in march.</sub>
-        
-        <h1>My first real blender project, 2017</h1>
-        <img title="this was actually for an art project at school! it looked terrible in the final render haha" class="fitImg" src="images/2017BlenderScreenshot.png">
-        <sub>Gotta love that old blender 2.0 look.</sub>
-        
-        <h1>My old unnamed mascot, 2020</h1>
-        <img title="Gmod was a great game." class="fitImg" src="images/pac3me2020.jpg">
-        <sub>The game GMOD had this addon called Pac3 that let you create custom player models, and this was a remake of my old one from 2018! sadly the original Pac3 file was lost to time.</sub>
-        <br>
-        <h4>Godot</h4>
-        <div class="skillBar">
-          <div class="skill godot">48%</div>
-        </div>
-        <p>
-          I have only made a few basic games with godot, but each of them have been almost painless to create, its a very
-          well thought out engine and has support for just about everything.
-        </p>
-        <p>
-          I like the custom language GDScript, its got alot of shortcuts which is nice but gets in the way
-          when your looking for something specific, using C# with godot just <em>feels</em> janky though<br> and
-          UI design is also a pain, i wish they just copied unity on that front.
-        </p>
-        <p>
-          Everyone expects you to use version control for any corruption or save errors which i dont mind since i love git, but it isnt even packaged with godot when you install it.
-          <br>and working in 3D is very jank and prone to errors.
-        </p>
-        <div class="videoWithText">
-          <div class="alignDiv">
-            <video id="cavedemo" controls class="videoNoText">
-              <source src="media/untitledcavegamedemo.mp4" type="video/mp4">
-            </video>
-            <div class="containtedSub">
-              Godot has a fairly strict limit on how many lights can affect a single sprite (like the background), lots of jank going on in the background to shutoff distant lights
-            </div>
-          </div>
-          
-          <div class="videoText">
-            <p>
-              This here is one of the better looking out of first couple games i made in godot,
-              everything here is made by me from the code to the music, and i used this project
-              (along with a few less good looking ones) to get adjusted to how godot does things.
-              <br><br>
-              I had big plans for this little game, they may be finished in the future, maybe not, who knows!
-              <br><br>
-              That outline also isn't baked in, its a custom shader i wrote with the help from a few tutorials,
-              it allows expands the size of the player mesh with a vertex shader to make room for
-              the outline itself, which wasn't in any of the guides for some reason and caused me a bit of a headache before i figured it out.
-            </p>
+    <div class="block" style="text-align: center" id="projects">
+      <h2>My Public Projects</h2>
+      <div class="projects_container">
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">
+            <img src="images/SFMLGESlpash.jpg" />
+            <div style="background-image: url(images/sfml-ge-scroll.png)"></div>
           </div>
         </div>
-        <br>
-        <br>
-        <h4>Unity</h4>
-        <div class="skillBar">
-          <div class="skill unity">60%</div>
+
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">
+            <img src="images/sandgen3Splash.png" />
+            <div id="staticbg" style="background-image: url(images/sandgenPreview.gif)"></div>
+          </div>
         </div>
-        <p>
-          That whole unity <q>situation</q> instantly stopped me from wanting to use unity for any
-          future personal projects, and i haven't really used it since, as godot was more then enough.
-        </p>
-        <p>
-          However, before all that i actually used to use unity for any and all games from 2018 forward,
-          and made many projects, some that i actually finished! im proficient enough
-          in unity to make just about anything and i personally think that unity's animation system is the best one i've seen in any engine so far.
-        </p>
-        <p>
-          My current custom made C# game engine is based on an <abbr title="Entity Component System">ECS</abbr> that has similar
-          wording, with GameObjects that hold Components, but functions much differently.
-        </p>
 
-        <h1>My first unity game, Boxing! 2018</h1>
-        <img title="Made in two days, and was alot of fun." class="fitImg" src="images/BoxingGameScreenShot.png">
-
-        <br><br>
-
-        <hr class="hrA">
-        <h1>Aseprite</h1>
-        <div class="skillBar">
-          <div class="skill aseprite">70%</div>
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='tarkovgetter/tarkovgetter.html'">
+            <img src="images/tarkovGetterCover.jpg" />
+            <div style="background-image: url(images/tarkovGetterBG.jpg)"></div>
+          </div>
         </div>
-        <p>
-          Like i said before im no artist, but visuals are one of the most important
-          Things in a game <br> (After Gameplay of course), so i know a fair bit of pixel art and am
-          slowly getting my own art style
-        </p>
-        <h1>Tiles Tiles! (Unfinished)</h1>
-        <img title="Tiles Tiles!! 16 Colors" class="fitImg" src="images/aseprite/Tiles Tiles (unfinished)!!.png">
 
-        <h1>Awakening (Part 1 of Intro for WIP)</h1>
-        <img title="Kinda childish, but looks nice!" class="fitImg" src="images/aseprite/AwakeningFront.png">
-
-        <br><br>
-        <hr class="hrA">
-        <h1>More Projects i made!</h1>
-        <hr class="hrA">
-
-        <h1>Life 2</h1>
-        <p>
-          A Particle life Simulator/Renderer, using just SFML.Net for the rendering, as i hadn't made SFML-GE yet! <br>
-          (Old Love2D Version Source <a href="https://github.com/ThatGuy-GEWP/Particle-Life-2">here</a>)
-        </p>
-        <br><br>
-        <video title="Why are you checking these :sob:" class="fitImg" autoplay controls muted loop>
-          <source src="media/Life2Compressed.mp4" type="video/mp4">
-        </video>
-
-        <h1>Gun Knight (WIP)</h1>
-        <video title="Why are you checking these :sob:" class="fitImg" autoplay controls muted loop>
-          <source src="media/gamedemo.mp4" type="video/mp4">
-        </video>
-
-        <br><br>
+        <div class="project_base">
+          <div class="project_image" onclick="window.location.href='tarkovgetter2/tarkovGetterIndx.html'">
+            <img src="tarkovgetter2/splash.png" />
+            <div style="background-image: url(tarkovgetter2/bg.png)"></div>
+          </div>
+        </div>
+        <!--
+        <div class="project_base"><div class="project_image"></div></div>
+        <div class="project_base"><div class="project_image"></div></div>
+        <div class="project_base"><div class="project_image"></div></div>
+        <div class="project_base"><div class="project_image"></div></div>
+        -->
       </div>
     </div>
-
-    <div class="block" style="text-align: center;" id="projects">
-      <h3>My Public Projects</h3>
-      <div class="grid">
-        <a class="project SFMLGE" href="https://github.com/ThatGuy-GEWP/SFML-GE">
-          <div class="SFMLGEScroll"></div>
-        </a>
-        <a class="project sandgen" href="https://github.com/ThatGuy-GEWP/SandGen3/#what-is-this">
-          <div class="sandgenScroll"></div>
-        </a>
-        <a class="project tarkovGetter2" href="tarkovgetter2/tarkovGetterIndx.html">
-          <div class="tarkovScroller2"></div>
-        </a>
-        <a class="project tarkovGetter" href="tarkovgetter/tarkovgetter.html">
-          <div class="tarkovScroller"></div>
-        </a>
-      </div>
-      <br>
-    </div>
-
-
-  </main>
-</body>
-
-<script src="important-stuffs.js"></script>
-
-<script src="trisBackground.js"></script>
-
-<script src="imageHolderScript.js"></script>
-<script>
-  var audios = document.getElementsByClassName("audioPlayer")
-  for(const elm of audios){
-    elm.volume = 0.25
-  }
-</script>
+  </body>
 </html>

@@ -1,0 +1,31 @@
+@keyframes fadeIn {
+    from {
+        color: transparent;
+    }
+}
+
+@keyframes fadeInTwo {
+    from {
+        filter: opacity(0);
+        background-color: transparent;
+        color: transparent;
+    }
+}
+
+@keyframes hover {
+    to {
+        filter: drop-shadow(0 0 0.75rem crimson);
+    }
+}
+
+@keyframes backgroundScroll {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}

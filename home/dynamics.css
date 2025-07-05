@@ -1,0 +1,24 @@
+@media screen and (max-width: 650px) {
+    .block {
+        min-width: 250px;
+    }
+    .project_base
+    {
+        width: 200px;
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .block {
+        min-width: 95%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .project_base
+    {
+        width: 800px;
+        height: 400px;
+    }
+}
