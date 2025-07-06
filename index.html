@@ -19,21 +19,23 @@
     <link rel="stylesheet" href="home/buttons.css" />
   </head>
   <body>
+    <canvas id="can"></canvas>
+    <script src="/legacy/trisBackground.js"></script>
+
     <br /><br />
     <div class="Title">Tim's Stuff</div>
     <br /><br />
-    
-    <!--
+
     <div class="button_holder">
-      <div onclick="window.location.href='blog/pages/AboutMe.html'">About me</div>
-      <div onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">About me Again!</div>
+      <div onclick="window.location.href='/index.html'">Public Projects</div>
+      <div onclick="window.location.href='/blog/pages/internalProjects.html'">Internal Projects</div>
+      <!--<div onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">About me Again!</div>-->
     </div>
-    -->
 
     <div class="block" style="text-align: center" id="projects">
-      <br>
+      <br />
       <div class="Title">My Public Projects</div>
-      <br>
+      <br />
       <div class="projects_container">
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">
@@ -62,14 +64,16 @@
             <div class="scroll_bg" style="background-image: url(tarkovgetter2/bg.png)"></div>
           </div>
         </div>
-        
+
         <div class="project_base">
-          <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/Neural-Network-From-Scratch'">
+          <div
+            class="project_image"
+            onclick="window.location.href='https://github.com/ThatGuy-GEWP/Neural-Network-From-Scratch'">
             <img src="images/nnfscover.png" />
             <div class="static_bg" style="background-image: url(images/nnfsBG.gif)"></div>
           </div>
         </div>
-        
+
         <div class="project_base">
           <div class="project_image" onclick="window.location.href='https://github.com/ThatGuy-GEWP/Particle-Life-2'">
             <img src="images/ParticleLife2Cover.png" />

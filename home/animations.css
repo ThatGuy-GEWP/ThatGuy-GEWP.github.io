@@ -18,6 +18,13 @@
     }
 }
 
+@keyframes hr_spread
+{
+    from{
+        width: 0%;
+    }
+}
+
 @keyframes backgroundScroll {
     0% {
         background-position: 0% 0%;

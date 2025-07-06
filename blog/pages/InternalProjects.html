@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!--Base-->
+        <meta charset="UTF-8" />
+        <title>About Me</title>
+
+        <!--Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
+
+        <!--CSS Files-->
+        <link rel="stylesheet" href="../../home/variables.css" />
+        <link rel="stylesheet" href="../../home/animations.css" />
+        <link rel="stylesheet" href="../../home/base_styles.css" />
+        <link rel="stylesheet" href="../../home/dynamics.css" />
+        <link rel="stylesheet" href="../../home/Projects/projects.css" />
+        <link rel="stylesheet" href="../../home/buttons.css" />
+        <link rel="stylesheet" href="../internal_projects.css" />
+    </head>
+    <body>
+        <canvas id="can"></canvas>
+        <script src="/legacy/trisBackground.js"></script>
+
+        <br /><br />
+        <div class="Title">Tim's Stuff</div>
+        <br /><br />
+
+        <div class="button_holder">
+            <div onclick="window.location.href='/index.html'">Public Projects</div>
+            <div onclick="window.location.href='/blog/pages/internalProjects.html'">Internal Projects</div>
+            <!--<div onclick="window.location.href='https://github.com/ThatGuy-GEWP/SFML-GE'">About me Again!</div>-->
+        </div>
+
+        <div class="block" style="text-align: center" id="projects">
+            <br />
+            <div class="Title">Internal Projects</div>
+
+            <div class="project">
+                <h2>Site-12</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/site_12_2.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            Testing the interaction system, and its various sounds
+                        </div>
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/site_12_1.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            Testing doors, lockers, and interactables like the keypad.
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            One of my <i>few</i> Unity games.<br /><br />
+                            An SCP game that was floating around in my head for a few years. <br /><br />I only got to
+                            basic interactions before running into multiple roadblocks with level development in Unity.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Sandgen 5 Game (Untitled)</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/sandgen5_footage.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            Testing the new lighting, and audio.
+                        </div>
+
+                        <div class="img_combo">
+                            <img src="/media/Sandgen5_Pathfinding%20layer.gif" />
+                            A bot pathfinding, and the pathfinding layer show in red and green.<br />
+                            Using A-Star pathfinding with tile movement costs for getting the actual path.
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            A game about digging, I took inspiration from the Flash game Motherload.<br /><br />
+                            While not finished, this one is running on the latest iteration of Sandgen and features:<br />
+                            - real-time lighting,<br />
+                            - real-time pathfinding generation,<br />
+                            - biome-based world generation,<br />
+                            - placing of images as elements,<br />
+                            - multithreading,<br />
+                            - and at one point, rigid body physics.
+                            <br /><br />
+                            It also uses lazy initialization and partial unloading of chunks. infinite worlds are
+                            possible but not actively supported.<br /><br />
+                            Made with my Game Engine SFML-GE.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Starbase Remake</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <img src="../../media/assembly_welding.gif" />
+                            Welding of multiple assemblies, then destroying all welds.
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../media/weld_anim.gif" />
+                            Improved graphics for welding
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../media/weld_chain_test.gif" />
+                            Showcasing an assembly splitting upon destruction of a parts welds.
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../media/loose_part_snap.gif" />
+                            loose, unwelded parts snapping off when moving past a certain speed.
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../media/nailgun.gif" />
+                            Nailing a plate into two beams
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            Another Unity game!<br />
+                            Made over a week-ish.<br /><br />
+
+                            Unity's built-in constraints, to put it bluntly, suck ass.<br /><br />
+
+                            To get around this, I used Unity's compound collider system, it basically allows many
+                            colliders to act and move as one big rigid body.<br />
+
+                            The issue is the only way to do this is to remove all rigidbodies from two objects (and
+                            sub-objects) you want to weld, move them in place, and then parent them to the same
+                            rigidbody game object.<br /><br />
+
+                            The assembly system I made basically handled all of that, kept track of welds, and validated
+                            connected parts.<br /><br />
+
+                            In my assembly system there were 3 types of constraints: a weld, a loose weld (that would
+                            break when moving fast), and a nail.<br /><br />
+
+                            Whenever the autoweld feature was used, In order to check for possible nearby welds, i would
+                            have to check the distance of each weld to each other.<br />
+                            To not spend 2 minutes waiting for sqrt operations for distance checks i made a custom Burst
+                            job (that uses SIMD instructions), to process entire arrays of weld point vectors then
+                            output their distances into another array.<br />
+                            then i just had to check the newly caluclated distances.<br /><br />
+
+                            The building system in general, was inspired heavily by the game Starbase.<br />
+                            But the implementation was done painfully and slowly by myself without any help.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Exponetia</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/exponetia_footage.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            A Round of exponentia.
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            A Rouge-Like Deck builder, where you chain spells to deal damage<br />
+                            This one was made over a week as well, and is one of the more complete games of mine.<br />
+                            Almost every card has a combo with another, and each combo adds either a mult or flat
+                            damage.<br /><br />
+                            Made with my Game Engine SFML-GE.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Raymarch-Testin</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <img src="../../images/denoising.png" />
+                            First version of de-noiser.
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../images/raytest_night.png" />
+                            Noisy render of glowing bits in the dark<br />
+                            using the first version of the de-noiser
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../images/smooth_marchin_denoiser.png" />
+                            Last version of de-noiser.<br />
+                            Using a normal buffer i blured each face of the cubes on screen seperately keeping crisp
+                            edges.<br />
+                            a low-res box-blur pass was used, as gaussian looked odd.<br />
+                            Ran at about 20-30fps.
+                        </div>
+                        <div class="img_combo">
+                            <img src="../../images/raymarch_bug.gif" />
+                            Aw, look! Baby's first memory access violation!
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            Built using my 3D version of SFML-GE, Hewn.<br /><br />
+                            Hewn runs on and has access to raw OpenGL, and this project used that to its full
+                            advantage<br />
+                            What was originaly just raymarching a few spheres, turned into a bunch of tests with
+                            real-time raytracing.<br />
+                            Then it pivoted back to raymarching, but with alot more cubes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Life 2</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/Life2Compressed.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            A hand picked, Semi-Stable configuration of forces between cells.<br />
+                            This version actually supported clipboard codes for diffrent presets of cell forces.
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            A Real-time Particle Life simulation, written in C# instead of Lua.<br />
+                            Surprisingly, it is not multithreaded.<br /><br />
+                            Made with my Game Engine SFML-GE.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2>Gun Knight</h2>
+                <hr />
+                <div class="invis_spacer">
+                    <div class="project_content">
+                        <div class="img_combo">
+                            <video autoplay muted controls loop>
+                                <source src="../../media/gamedemo.mp4" type="video/mp4" />
+                                Your browser does not support this video.
+                            </video>
+                            Showcasing the parry's impact frames, as well as some of the basic destruction effects.
+                        </div>
+                    </div>
+                    <div class="panel_div">
+                        <div class="invis_spacer">
+                            Made in Godot over the course of 3-ish days.
+                            <br />Has a couple custom shaders that are unbelievably subtle, and cannot be seen here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
